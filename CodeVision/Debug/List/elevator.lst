@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.1.30  E:\MicroController\Elevator\CodeVision\Debug\List\elevator.asm Fri Mar 08 19:51:44 2019
+AVRASM ver. 2.1.30  E:\MicroController\ATmega16-Elevator\CodeVision\Debug\List\elevator.asm Sat Mar 09 22:51:57 2019
 
                  
                  
@@ -1095,7 +1095,7 @@ AVRASM ver. 2.1.30  E:\MicroController\Elevator\CodeVision\Debug\List\elevator.a
                  __START_OF_CODE:
                  
                  ;INTERRUPT VECTORS
-000000 940c 0037 	JMP  __RESET
+000000 940c 0035 	JMP  __RESET
 000002 940c 0000 	JMP  0x00
 000004 940c 0000 	JMP  0x00
 000006 940c 0000 	JMP  0x00
@@ -1118,98 +1118,93 @@ AVRASM ver. 2.1.30  E:\MicroController\Elevator\CodeVision\Debug\List\elevator.a
 000028 940c 0000 	JMP  0x00
                  
                  _0x3:
-E:\MicroController\Elevator\CodeVision\Debug\List\elevator.asm(1117): warning: .cseg .db misalignment - padding zero byte
+E:\MicroController\ATmega16-Elevator\CodeVision\Debug\List\elevator.asm(1117): warning: .cseg .db misalignment - padding zero byte
 00002a 0003      	.DB  0x3
-                 _0x4:
-00002b 1388      	.DB  0x88,0x13
-                 _0x5:
-E:\MicroController\Elevator\CodeVision\Debug\List\elevator.asm(1121): warning: .cseg .db misalignment - padding zero byte
-00002c 0064      	.DB  0x64
                  _0x2000060:
-E:\MicroController\Elevator\CodeVision\Debug\List\elevator.asm(1123): warning: .cseg .db misalignment - padding zero byte
-00002d 0001      	.DB  0x1
+E:\MicroController\ATmega16-Elevator\CodeVision\Debug\List\elevator.asm(1119): warning: .cseg .db misalignment - padding zero byte
+00002b 0001      	.DB  0x1
                  _0x2000000:
-00002e 4e2d
-00002f 4e41
-000030 4900
-000031 464e      	.DB  0x2D,0x4E,0x41,0x4E,0x0,0x49,0x4E,0x46
-E:\MicroController\Elevator\CodeVision\Debug\List\elevator.asm(1126): warning: .cseg .db misalignment - padding zero byte
-000032 0000      	.DB  0x0
+00002c 4e2d
+00002d 4e41
+00002e 4900
+00002f 464e      	.DB  0x2D,0x4E,0x41,0x4E,0x0,0x49,0x4E,0x46
+E:\MicroController\ATmega16-Elevator\CodeVision\Debug\List\elevator.asm(1122): warning: .cseg .db misalignment - padding zero byte
+000030 0000      	.DB  0x0
                  
                  __GLOBAL_INI_TBL:
-000033 0001      	.DW  0x01
-000034 0160      	.DW  __seed_G100
-000035 005a      	.DW  _0x2000060*2
+000031 0001      	.DW  0x01
+000032 0160      	.DW  __seed_G100
+000033 0056      	.DW  _0x2000060*2
                  
                  _0xFFFFFFFF:
-000036 0000      	.DW  0
+000034 0000      	.DW  0
                  
                  #define __GLOBAL_INI_TBL_PRESENT 1
                  
                  __RESET:
-000037 94f8      	CLI
-000038 27ee      	CLR  R30
-000039 bbec      	OUT  EECR,R30
+000035 94f8      	CLI
+000036 27ee      	CLR  R30
+000037 bbec      	OUT  EECR,R30
                  
                  ;INTERRUPT VECTORS ARE PLACED
                  ;AT THE START OF FLASH
-00003a e0f1      	LDI  R31,1
-00003b bffb      	OUT  GICR,R31
-00003c bfeb      	OUT  GICR,R30
-00003d bfe5      	OUT  MCUCR,R30
+000038 e0f1      	LDI  R31,1
+000039 bffb      	OUT  GICR,R31
+00003a bfeb      	OUT  GICR,R30
+00003b bfe5      	OUT  MCUCR,R30
                  
                  ;CLEAR R2-R14
-00003e e08d      	LDI  R24,(14-2)+1
-00003f e0a2      	LDI  R26,2
-000040 27bb      	CLR  R27
+00003c e08d      	LDI  R24,(14-2)+1
+00003d e0a2      	LDI  R26,2
+00003e 27bb      	CLR  R27
                  __CLEAR_REG:
-000041 93ed      	ST   X+,R30
-000042 958a      	DEC  R24
-000043 f7e9      	BRNE __CLEAR_REG
+00003f 93ed      	ST   X+,R30
+000040 958a      	DEC  R24
+000041 f7e9      	BRNE __CLEAR_REG
                  
                  ;CLEAR SRAM
-000044 e080      	LDI  R24,LOW(__CLEAR_SRAM_SIZE)
-000045 e094      	LDI  R25,HIGH(__CLEAR_SRAM_SIZE)
-000046 e6a0      	LDI  R26,__SRAM_START
+000042 e080      	LDI  R24,LOW(__CLEAR_SRAM_SIZE)
+000043 e094      	LDI  R25,HIGH(__CLEAR_SRAM_SIZE)
+000044 e6a0      	LDI  R26,__SRAM_START
                  __CLEAR_SRAM:
-000047 93ed      	ST   X+,R30
-000048 9701      	SBIW R24,1
-000049 f7e9      	BRNE __CLEAR_SRAM
+000045 93ed      	ST   X+,R30
+000046 9701      	SBIW R24,1
+000047 f7e9      	BRNE __CLEAR_SRAM
                  
                  ;GLOBAL VARIABLES INITIALIZATION
-00004a e6e6      	LDI  R30,LOW(__GLOBAL_INI_TBL*2)
-00004b e0f0      	LDI  R31,HIGH(__GLOBAL_INI_TBL*2)
+000048 e6e2      	LDI  R30,LOW(__GLOBAL_INI_TBL*2)
+000049 e0f0      	LDI  R31,HIGH(__GLOBAL_INI_TBL*2)
                  __GLOBAL_INI_NEXT:
-00004c 9185      	LPM  R24,Z+
-00004d 9195      	LPM  R25,Z+
-00004e 9700      	SBIW R24,0
-00004f f061      	BREQ __GLOBAL_INI_END
-000050 91a5      	LPM  R26,Z+
-000051 91b5      	LPM  R27,Z+
-000052 9005      	LPM  R0,Z+
-000053 9015      	LPM  R1,Z+
-000054 01bf      	MOVW R22,R30
-000055 01f0      	MOVW R30,R0
+00004a 9185      	LPM  R24,Z+
+00004b 9195      	LPM  R25,Z+
+00004c 9700      	SBIW R24,0
+00004d f061      	BREQ __GLOBAL_INI_END
+00004e 91a5      	LPM  R26,Z+
+00004f 91b5      	LPM  R27,Z+
+000050 9005      	LPM  R0,Z+
+000051 9015      	LPM  R1,Z+
+000052 01bf      	MOVW R22,R30
+000053 01f0      	MOVW R30,R0
                  __GLOBAL_INI_LOOP:
-000056 9005      	LPM  R0,Z+
-000057 920d      	ST   X+,R0
-000058 9701      	SBIW R24,1
-000059 f7e1      	BRNE __GLOBAL_INI_LOOP
-00005a 01fb      	MOVW R30,R22
-00005b cff0      	RJMP __GLOBAL_INI_NEXT
+000054 9005      	LPM  R0,Z+
+000055 920d      	ST   X+,R0
+000056 9701      	SBIW R24,1
+000057 f7e1      	BRNE __GLOBAL_INI_LOOP
+000058 01fb      	MOVW R30,R22
+000059 cff0      	RJMP __GLOBAL_INI_NEXT
                  __GLOBAL_INI_END:
                  
                  ;HARDWARE STACK POINTER INITIALIZATION
-00005c e5ef      	LDI  R30,LOW(__SRAM_END-__HEAP_SIZE)
-00005d bfed      	OUT  SPL,R30
-00005e e0e4      	LDI  R30,HIGH(__SRAM_END-__HEAP_SIZE)
-00005f bfee      	OUT  SPH,R30
+00005a e5ef      	LDI  R30,LOW(__SRAM_END-__HEAP_SIZE)
+00005b bfed      	OUT  SPL,R30
+00005c e0e4      	LDI  R30,HIGH(__SRAM_END-__HEAP_SIZE)
+00005d bfee      	OUT  SPH,R30
                  
                  ;DATA STACK POINTER INITIALIZATION
-000060 e6c0      	LDI  R28,LOW(__SRAM_START+__DSTACK_SIZE)
-000061 e0d1      	LDI  R29,HIGH(__SRAM_START+__DSTACK_SIZE)
+00005e e6c0      	LDI  R28,LOW(__SRAM_START+__DSTACK_SIZE)
+00005f e0d1      	LDI  R29,HIGH(__SRAM_START+__DSTACK_SIZE)
                  
-000062 940c 01d5 	JMP  _main
+000060 940c 011d 	JMP  _main
                  
                  	.ESEG
                  	.ORG 0
@@ -1218,7 +1213,7 @@ E:\MicroController\Elevator\CodeVision\Debug\List\elevator.asm(1126): warning: .
                  	.ORG 0x160
                  
                  	.CSEG
-                 ;/*
+                 ;    /*
                  ; * test1.c
                  ; *
                  ; * Created: 3/8/2019 11:24:16 AM
@@ -1240,907 +1235,764 @@ E:\MicroController\Elevator\CodeVision\Debug\List\elevator.asm(1126): warning: .
                  ;#include <mega16.h>
                  ;#include <delay.h>
                  ;#include <stdlib.h>
+                 ;#include <math.h>
                  ;
                  ;const short int NUM_OF_FLOORS = 3;
                  
                  	.DSEG
-                 ;const short int DELAY_BETWEENLFLOORS = 5000;
-                 ;const short int MAX_QUEUE_SIZE = 100;
+                 ;//const short int DELAY_BETWEENLFLOORS = 5000;
                  ;
-                 ;void prepare7SegDisplay(unsigned char* bcd[],unsigned char* f[]){
-                 ; 0000 0011 void prepare7SegDisplay(unsigned char* bcd[],unsigned char* f[]){
+                 ;void prepare7SegDisplay(int floor){
+                 ; 0000 0011 void prepare7SegDisplay(int floor){
                  
                  	.CSEG
                  _prepare7SegDisplay:
                  ; .FSTART _prepare7SegDisplay
-                 ; 0000 0012     *bcd[0] = *f[0] || *f[2];
-000064 93ba      	ST   -Y,R27
-000065 93aa      	ST   -Y,R26
-                 ;	bcd -> Y+2
-                 ;	f -> Y+0
-000066 81aa      	LDD  R26,Y+2
-000067 81bb      	LDD  R27,Y+2+1
-000068 900d      	LD   R0,X+
-000069 901c      	LD   R1,X
-00006a 940e 02ba 	CALL SUBOPT_0x0
-00006c 81e0      	LD   R30,Z
-00006d 30e0      	CPI  R30,0
-00006e f429      	BRNE _0x6
-00006f 940e 02bf 	CALL SUBOPT_0x1
-000071 f411      	BRNE _0x6
-000072 e0e0      	LDI  R30,0
-000073 c001      	RJMP _0x7
-                 _0x6:
-000074 e0e1      	LDI  R30,1
-                 _0x7:
-000075 01d0      	MOVW R26,R0
-000076 93ec      	ST   X,R30
-                 ; 0000 0013     *bcd[1] = *f[1] || *f[2];
-000077 81ea      	LDD  R30,Y+2
-000078 81fb      	LDD  R31,Y+2+1
-                +
-000079 8002     +LDD R0 , Z + 2
-00007a 8013     +LDD R1 , Z + 2 + 1
-                 	__GETWRZ 0,1,2
+                 ; 0000 0012     PORTB.0 = floor%2;
+000062 93ba      	ST   -Y,R27
+000063 93aa      	ST   -Y,R26
+                 ;	floor -> Y+0
+000064 81e8      	LD   R30,Y
+000065 81f9      	LDD  R31,Y+1
+000066 e0a1      	LDI  R26,LOW(1)
+000067 e0b0      	LDI  R27,HIGH(1)
+000068 940e 0195 	CALL __MANDW12
+00006a 30e0      	CPI  R30,0
+00006b f411      	BRNE _0x4
+00006c 98c0      	CBI  0x18,0
+00006d c001      	RJMP _0x5
+                 _0x4:
+00006e 9ac0      	SBI  0x18,0
+                 _0x5:
+                 ; 0000 0013     PORTB.1 = floor==2||floor==3||floor==6||floor==7;
+00006f 81a8      	LD   R26,Y
+000070 81b9      	LDD  R27,Y+1
+000071 9712      	SBIW R26,2
+000072 f071      	BREQ _0x6
+000073 81a8      	LD   R26,Y
+000074 81b9      	LDD  R27,Y+1
+000075 9713      	SBIW R26,3
+000076 f051      	BREQ _0x6
+000077 81a8      	LD   R26,Y
+000078 81b9      	LDD  R27,Y+1
+000079 9716      	SBIW R26,6
+00007a f031      	BREQ _0x6
 00007b 81a8      	LD   R26,Y
 00007c 81b9      	LDD  R27,Y+1
-00007d 9612      	ADIW R26,2
-00007e 940e 0313 	CALL __GETW1P
-000080 81e0      	LD   R30,Z
-000081 30e0      	CPI  R30,0
-000082 f429      	BRNE _0x8
-000083 940e 02bf 	CALL SUBOPT_0x1
-000085 f411      	BRNE _0x8
-000086 e0e0      	LDI  R30,0
-000087 c001      	RJMP _0x9
+00007d 9717      	SBIW R26,7
+00007e f011      	BREQ _0x6
+00007f e0e0      	LDI  R30,0
+000080 c001      	RJMP _0x7
+                 _0x6:
+000081 e0e1      	LDI  R30,1
+                 _0x7:
+000082 30e0      	CPI  R30,0
+000083 f411      	BRNE _0x8
+000084 98c1      	CBI  0x18,1
+000085 c001      	RJMP _0x9
                  _0x8:
-000088 e0e1      	LDI  R30,1
+000086 9ac1      	SBI  0x18,1
                  _0x9:
-000089 01d0      	MOVW R26,R0
-00008a 93ec      	ST   X,R30
-                 ; 0000 0014     *bcd[2] = 0;
-00008b 81aa      	LDD  R26,Y+2
-00008c 81bb      	LDD  R27,Y+2+1
-00008d 9614      	ADIW R26,4
-00008e 940e 0313 	CALL __GETW1P
-000090 e0a0      	LDI  R26,LOW(0)
-000091 83a0      	STD  Z+0,R26
-                 ; 0000 0015     *bcd[3] = 0;
-000092 81aa      	LDD  R26,Y+2
-000093 81bb      	LDD  R27,Y+2+1
-000094 9616      	ADIW R26,6
-000095 940e 0313 	CALL __GETW1P
-000097 e0a0      	LDI  R26,LOW(0)
-000098 83a0      	STD  Z+0,R26
+                 ; 0000 0014     PORTB.2 = floor==4||floor==5||floor==6||floor==7;
+000087 81a8      	LD   R26,Y
+000088 81b9      	LDD  R27,Y+1
+000089 9714      	SBIW R26,4
+00008a f071      	BREQ _0xA
+00008b 81a8      	LD   R26,Y
+00008c 81b9      	LDD  R27,Y+1
+00008d 9715      	SBIW R26,5
+00008e f051      	BREQ _0xA
+00008f 81a8      	LD   R26,Y
+000090 81b9      	LDD  R27,Y+1
+000091 9716      	SBIW R26,6
+000092 f031      	BREQ _0xA
+000093 81a8      	LD   R26,Y
+000094 81b9      	LDD  R27,Y+1
+000095 9717      	SBIW R26,7
+000096 f011      	BREQ _0xA
+000097 e0e0      	LDI  R30,0
+000098 c001      	RJMP _0xB
+                 _0xA:
+000099 e0e1      	LDI  R30,1
+                 _0xB:
+00009a 30e0      	CPI  R30,0
+00009b f411      	BRNE _0xC
+00009c 98c2      	CBI  0x18,2
+00009d c001      	RJMP _0xD
+                 _0xC:
+00009e 9ac2      	SBI  0x18,2
+                 _0xD:
+                 ; 0000 0015     PORTB.3 = floor==8||floor==9;
+00009f 81a8      	LD   R26,Y
+0000a0 81b9      	LDD  R27,Y+1
+0000a1 9718      	SBIW R26,8
+0000a2 f031      	BREQ _0xE
+0000a3 81a8      	LD   R26,Y
+0000a4 81b9      	LDD  R27,Y+1
+0000a5 9719      	SBIW R26,9
+0000a6 f011      	BREQ _0xE
+0000a7 e0e0      	LDI  R30,0
+0000a8 c001      	RJMP _0xF
+                 _0xE:
+0000a9 e0e1      	LDI  R30,1
+                 _0xF:
+0000aa 30e0      	CPI  R30,0
+0000ab f411      	BRNE _0x10
+0000ac 98c3      	CBI  0x18,3
+0000ad c001      	RJMP _0x11
+                 _0x10:
+0000ae 9ac3      	SBI  0x18,3
+                 _0x11:
                  ; 0000 0016 }
-000099 c114      	RJMP _0x2080004
+0000af c0d4      	RJMP _0x2080001
                  ; .FEND
-                 ;int getFloor(unsigned char* f[]){
-                 ; 0000 0017 int getFloor(unsigned char* f[]){
-                 _getFloor:
-                 ; .FSTART _getFloor
-                 ; 0000 0018     return *f[2] * 3 + *f[1] * 2 + *f[0] * 1;
-00009a 93ba      	ST   -Y,R27
-00009b 93aa      	ST   -Y,R26
-                 ;	f -> Y+0
-00009c 81a8      	LD   R26,Y
-00009d 81b9      	LDD  R27,Y+1
-00009e 9614      	ADIW R26,4
-00009f 940e 0313 	CALL __GETW1P
-0000a1 81a0      	LD   R26,Z
-0000a2 e0e3      	LDI  R30,LOW(3)
-0000a3 9fea      	MUL  R30,R26
-0000a4 01b0      	MOVW R22,R0
-0000a5 81a8      	LD   R26,Y
-0000a6 81b9      	LDD  R27,Y+1
-0000a7 9612      	ADIW R26,2
-0000a8 940e 0313 	CALL __GETW1P
-0000aa 81a0      	LD   R26,Z
-0000ab e0e2      	LDI  R30,LOW(2)
-0000ac 9fea      	MUL  R30,R26
-0000ad 01f0      	MOVW R30,R0
-                +
-0000ae 0f6e     +ADD R22 , R30
-0000af 1f7f     +ADC R23 , R31
-                 	__ADDWRR 22,23,30,31
-0000b0 940e 02ba 	CALL SUBOPT_0x0
-0000b2 81a0      	LD   R26,Z
-0000b3 e0e1      	LDI  R30,LOW(1)
-0000b4 9fea      	MUL  R30,R26
-0000b5 01f0      	MOVW R30,R0
-0000b6 0fe6      	ADD  R30,R22
-0000b7 1ff7      	ADC  R31,R23
-0000b8 c1ff      	RJMP _0x2080001
-                 ; 0000 0019 }
+                 ;void turnOnLED(int requsted_floor) {
+                 ; 0000 0017 void turnOnLED(int requsted_floor) {
+                 _turnOnLED:
+                 ; .FSTART _turnOnLED
+                 ; 0000 0018 	if (requsted_floor == 1) PORTC.5 = 0;
+0000b0 93ba      	ST   -Y,R27
+0000b1 93aa      	ST   -Y,R26
+                 ;	requsted_floor -> Y+0
+0000b2 81a8      	LD   R26,Y
+0000b3 81b9      	LDD  R27,Y+1
+0000b4 9711      	SBIW R26,1
+0000b5 f411      	BRNE _0x12
+0000b6 98ad      	CBI  0x15,5
+                 ; 0000 0019 	else if (requsted_floor == 2) PORTC.6 = 0;
+0000b7 c00b      	RJMP _0x15
+                 _0x12:
+0000b8 81a8      	LD   R26,Y
+0000b9 81b9      	LDD  R27,Y+1
+0000ba 9712      	SBIW R26,2
+0000bb f411      	BRNE _0x16
+0000bc 98ae      	CBI  0x15,6
+                 ; 0000 001A 	else if (requsted_floor == 3) PORTC.7 = 0;
+0000bd c005      	RJMP _0x19
+                 _0x16:
+0000be 81a8      	LD   R26,Y
+0000bf 81b9      	LDD  R27,Y+1
+0000c0 9713      	SBIW R26,3
+0000c1 f409      	BRNE _0x1A
+0000c2 98af      	CBI  0x15,7
+                 ; 0000 001B }
+                 _0x1A:
+                 _0x19:
+                 _0x15:
+0000c3 c0c0      	RJMP _0x2080001
                  ; .FEND
-                 ;void setFloor(int floor,unsigned char* f[]){
-                 ; 0000 001A void setFloor(int floor,unsigned char* f[]){
-                 _setFloor:
-                 ; .FSTART _setFloor
-                 ; 0000 001B     *f[0]=*f[1]=*f[2] = 0;
-0000b9 93ba      	ST   -Y,R27
-0000ba 93aa      	ST   -Y,R26
-                 ;	floor -> Y+2
-                 ;	f -> Y+0
-0000bb 940e 02ba 	CALL SUBOPT_0x0
-0000bd 93ff      	PUSH R31
-0000be 93ef      	PUSH R30
-0000bf 81e8      	LD   R30,Y
-0000c0 81f9      	LDD  R31,Y+1
-                +
-0000c1 8002     +LDD R0 , Z + 2
-0000c2 8013     +LDD R1 , Z + 2 + 1
-                 	__GETWRZ 0,1,2
-0000c3 81a4      	LDD  R26,Z+4
-0000c4 81b5      	LDD  R27,Z+5
-0000c5 e0e0      	LDI  R30,LOW(0)
-0000c6 93ec      	ST   X,R30
-0000c7 01d0      	MOVW R26,R0
-0000c8 93ec      	ST   X,R30
-0000c9 91af      	POP  R26
-0000ca 91bf      	POP  R27
-0000cb 93ec      	ST   X,R30
-                 ; 0000 001C     *f[0] = floor==1;
+                 ;void turnOffLED(int requsted_floor) {
+                 ; 0000 001C void turnOffLED(int requsted_floor) {
+                 _turnOffLED:
+                 ; .FSTART _turnOffLED
+                 ; 0000 001D 	if (requsted_floor == 1) PORTC.5 = 1;
+0000c4 93ba      	ST   -Y,R27
+0000c5 93aa      	ST   -Y,R26
+                 ;	requsted_floor -> Y+0
+0000c6 81a8      	LD   R26,Y
+0000c7 81b9      	LDD  R27,Y+1
+0000c8 9711      	SBIW R26,1
+0000c9 f411      	BRNE _0x1D
+0000ca 9aad      	SBI  0x15,5
+                 ; 0000 001E 	else if (requsted_floor == 2) PORTC.6 = 1;
+0000cb c00b      	RJMP _0x20
+                 _0x1D:
 0000cc 81a8      	LD   R26,Y
 0000cd 81b9      	LDD  R27,Y+1
-0000ce 900d      	LD   R0,X+
-0000cf 901c      	LD   R1,X
-0000d0 81aa      	LDD  R26,Y+2
-0000d1 81bb      	LDD  R27,Y+2+1
-0000d2 e0e1      	LDI  R30,LOW(1)
-0000d3 e0f0      	LDI  R31,HIGH(1)
-0000d4 940e 02c7 	CALL SUBOPT_0x2
-                 ; 0000 001D     *f[1] = floor==2;
-                +
-0000d6 8002     +LDD R0 , Z + 2
-0000d7 8013     +LDD R1 , Z + 2 + 1
-                 	__GETWRZ 0,1,2
-0000d8 81aa      	LDD  R26,Y+2
-0000d9 81bb      	LDD  R27,Y+2+1
-0000da e0e2      	LDI  R30,LOW(2)
-0000db e0f0      	LDI  R31,HIGH(2)
-0000dc 940e 02c7 	CALL SUBOPT_0x2
-                 ; 0000 001E     *f[2] = floor==3;
-                +
-0000de 8004     +LDD R0 , Z + 4
-0000df 8015     +LDD R1 , Z + 4 + 1
-                 	__GETWRZ 0,1,4
-0000e0 81aa      	LDD  R26,Y+2
-0000e1 81bb      	LDD  R27,Y+2+1
-0000e2 e0e3      	LDI  R30,LOW(3)
-0000e3 e0f0      	LDI  R31,HIGH(3)
-0000e4 940e 030d 	CALL __EQW12
-0000e6 01d0      	MOVW R26,R0
-0000e7 93ec      	ST   X,R30
-                 ; 0000 001F }
-0000e8 c0c5      	RJMP _0x2080004
+0000ce 9712      	SBIW R26,2
+0000cf f411      	BRNE _0x21
+0000d0 9aae      	SBI  0x15,6
+                 ; 0000 001F 	else if (requsted_floor == 3) PORTC.7 = 1;
+0000d1 c005      	RJMP _0x24
+                 _0x21:
+0000d2 81a8      	LD   R26,Y
+0000d3 81b9      	LDD  R27,Y+1
+0000d4 9713      	SBIW R26,3
+0000d5 f409      	BRNE _0x25
+0000d6 9aaf      	SBI  0x15,7
+                 ; 0000 0020 }
+                 _0x25:
+                 _0x24:
+                 _0x20:
+0000d7 c0ac      	RJMP _0x2080001
                  ; .FEND
-                 ;void moveElevator(int target_floor,unsigned char* up_state,unsigned char* down_state,unsigned char* curr_floor[],unsigne ...
-                 ; 0000 0020 void moveElevator(int target_floor,unsigned char* up_state,unsigned char* down_state,unsigned char* curr_floor[],unsigned char* bcd[]){
-                 _moveElevator:
-                 ; .FSTART _moveElevator
-                 ; 0000 0021     int curr_flr_int = getFloor(curr_floor);
-                 ; 0000 0022     if(target_floor==curr_flr_int) return;
-0000e9 940e 02ce 	CALL SUBOPT_0x3
-                 ;	target_floor -> Y+10
-                 ;	*up_state -> Y+8
-                 ;	*down_state -> Y+6
-                 ;	curr_floor -> Y+4
-                 ;	bcd -> Y+2
-                 ;	curr_flr_int -> R16,R17
-0000eb 81ac      	LDD  R26,Y+4
-0000ec 81bd      	LDD  R27,Y+4+1
-0000ed dfac      	RCALL _getFloor
-0000ee 018f      	MOVW R16,R30
-0000ef 85aa      	LDD  R26,Y+10
-0000f0 85bb      	LDD  R27,Y+10+1
-0000f1 170a      	CP   R16,R26
-0000f2 071b      	CPC  R17,R27
-0000f3 f419      	BRNE _0xA
-0000f4 8119      	LDD  R17,Y+1
-0000f5 8108      	LDD  R16,Y+0
-0000f6 c09a      	RJMP _0x2080007
-                 ; 0000 0023 
-                 ; 0000 0024     if(target_floor>curr_flr_int){*up_state=1,*down_state=0;}
-                 _0xA:
-0000f7 85aa      	LDD  R26,Y+10
-0000f8 85bb      	LDD  R27,Y+10+1
-0000f9 170a      	CP   R16,R26
-0000fa 071b      	CPC  R17,R27
-0000fb f444      	BRGE _0xB
-0000fc 85a8      	LDD  R26,Y+8
-0000fd 85b9      	LDD  R27,Y+8+1
-0000fe e0e1      	LDI  R30,LOW(1)
-0000ff 93ec      	ST   X,R30
-000100 81ae      	LDD  R26,Y+6
-000101 81bf      	LDD  R27,Y+6+1
-000102 e0e0      	LDI  R30,LOW(0)
-000103 c007      	RJMP _0x2A
-                 ; 0000 0025     else {*up_state=0,*down_state=1;}
-                 _0xB:
-000104 85a8      	LDD  R26,Y+8
-000105 85b9      	LDD  R27,Y+8+1
-000106 e0e0      	LDI  R30,LOW(0)
-000107 93ec      	ST   X,R30
-000108 81ae      	LDD  R26,Y+6
-000109 81bf      	LDD  R27,Y+6+1
-00010a e0e1      	LDI  R30,LOW(1)
-                 _0x2A:
-00010b 93ec      	ST   X,R30
-                 ; 0000 0026     delay_ms(DELAY_BETWEENLFLOORS);
-00010c e8a8      	LDI  R26,LOW(5000)
-00010d e1b3      	LDI  R27,HIGH(5000)
-00010e 940e 0303 	CALL _delay_ms
-                 ; 0000 0027     setFloor(target_floor,curr_floor);
-000110 85ea      	LDD  R30,Y+10
-000111 85fb      	LDD  R31,Y+10+1
-000112 93fa      	ST   -Y,R31
-000113 93ea      	ST   -Y,R30
-000114 81ae      	LDD  R26,Y+6
-000115 81bf      	LDD  R27,Y+6+1
-000116 dfa2      	RCALL _setFloor
-                 ; 0000 0028     prepare7SegDisplay(bcd,curr_floor);
-000117 81ea      	LDD  R30,Y+2
-000118 81fb      	LDD  R31,Y+2+1
-000119 93fa      	ST   -Y,R31
-00011a 93ea      	ST   -Y,R30
-00011b 81ae      	LDD  R26,Y+6
-00011c 81bf      	LDD  R27,Y+6+1
-00011d df46      	RCALL _prepare7SegDisplay
-                 ; 0000 0029 
-                 ; 0000 002A }
-00011e 8119      	LDD  R17,Y+1
-00011f 8108      	LDD  R16,Y+0
-000120 c070      	RJMP _0x2080007
+                 ;int getCurrentFloor(){
+                 ; 0000 0021 int getCurrentFloor(){
+                 _getCurrentFloor:
+                 ; .FSTART _getCurrentFloor
+                 ; 0000 0022     return PINA.2 * 3 +  PINA.1 * 2 + PINA.0;
+0000d8 e0a0      	LDI  R26,0
+0000d9 99ca      	SBIC 0x19,2
+0000da e0a1      	LDI  R26,1
+0000db e0e3      	LDI  R30,LOW(3)
+0000dc 9fea      	MUL  R30,R26
+0000dd 2d60      	MOV  R22,R0
+0000de e0a0      	LDI  R26,0
+0000df 99c9      	SBIC 0x19,1
+0000e0 e0a1      	LDI  R26,1
+0000e1 940e 0186 	CALL SUBOPT_0x0
+0000e3 e0e0      	LDI  R30,0
+0000e4 99c8      	SBIC 0x19,0
+0000e5 e0e1      	LDI  R30,1
+0000e6 0fea      	ADD  R30,R26
+0000e7 c033      	RJMP _0x2080002
+                 ; 0000 0023 }
                  ; .FEND
                  ;
+                 ;int getInBtnsFloor(){
+                 ; 0000 0025 int getInBtnsFloor(){
+                 _getInBtnsFloor:
+                 ; .FSTART _getInBtnsFloor
+                 ; 0000 0026     return PINC.2 * 3 +  PINC.1 * 2 + PINC.0;
+0000e8 e0a0      	LDI  R26,0
+0000e9 999a      	SBIC 0x13,2
+0000ea e0a1      	LDI  R26,1
+0000eb e0e3      	LDI  R30,LOW(3)
+0000ec 9fea      	MUL  R30,R26
+0000ed 2d60      	MOV  R22,R0
+0000ee e0a0      	LDI  R26,0
+0000ef 9999      	SBIC 0x13,1
+0000f0 e0a1      	LDI  R26,1
+0000f1 940e 0186 	CALL SUBOPT_0x0
+0000f3 e0e0      	LDI  R30,0
+0000f4 9998      	SBIC 0x13,0
+0000f5 e0e1      	LDI  R30,1
+0000f6 0fea      	ADD  R30,R26
+0000f7 c023      	RJMP _0x2080002
+                 ; 0000 0027 }
+                 ; .FEND
+                 ;int getOutBtnsFloor(){
+                 ; 0000 0028 int getOutBtnsFloor(){
+                 _getOutBtnsFloor:
+                 ; .FSTART _getOutBtnsFloor
+                 ; 0000 0029     return PIND.2 * 3 +  PIND.1 * 2 + PIND.0;
+0000f8 e0a0      	LDI  R26,0
+0000f9 9982      	SBIC 0x10,2
+0000fa e0a1      	LDI  R26,1
+0000fb e0e3      	LDI  R30,LOW(3)
+0000fc 9fea      	MUL  R30,R26
+0000fd 2d60      	MOV  R22,R0
+0000fe e0a0      	LDI  R26,0
+0000ff 9981      	SBIC 0x10,1
+000100 e0a1      	LDI  R26,1
+000101 940e 0186 	CALL SUBOPT_0x0
+000103 e0e0      	LDI  R30,0
+000104 9980      	SBIC 0x10,0
+000105 e0e1      	LDI  R30,1
+000106 0fea      	ADD  R30,R26
+000107 c013      	RJMP _0x2080002
+                 ; 0000 002A }
+                 ; .FEND
+                 ;
+                 ;
+                 ;
+                 ;int getMaxRequestedFloor(){
+                 ; 0000 002E int getMaxRequestedFloor(){
+                 ; 0000 002F     int max;
+                 ; 0000 0030     if(PIND.2||PINC.2) max = 3;
+                 ;	max -> R16,R17
+                 ; 0000 0031     else if(PIND.1||PINC.1) max = 2;
+                 ; 0000 0032     else if(PIND.0||PINC.0) max = 1;
+                 ; 0000 0033     else max = 0;
+                 ; 0000 0034     return max;
+                 ; 0000 0035 }
+                 ;int getMinRequestedFloor(){
+                 ; 0000 0036 int getMinRequestedFloor(){
+                 ; 0000 0037     int min;
+                 ; 0000 0038     if(PIND.0||PINC.0) min = 1;
+                 ;	min -> R16,R17
+                 ; 0000 0039     else if(PIND.1||PINC.1) min = 2;
+                 ; 0000 003A     else if(PIND.2||PINC.2) min = 3;
+                 ; 0000 003B     else min = 0;
+                 ; 0000 003C     return min;
+                 ; 0000 003D }
+                 ;void onArriveFloor(int floor){
+                 ; 0000 003E void onArriveFloor(int floor){
+                 ; 0000 003F 	if (floor == 1) { PIND.0 = 0; PINC.0 = 0; };
+                 ;	floor -> Y+0
+                 ; 0000 0040 	if (floor == 2) { PIND.1 = 0; PINC.1 = 0; }
+                 ; 0000 0041 	if (floor == 3) { PIND.2 = 0; PINC.2 = 0; }
+                 ; 0000 0042 }
+                 ;
+                 ;short getDirection(){
+                 ; 0000 0044 short getDirection(){
+                 _getDirection:
+                 ; .FSTART _getDirection
+                 ; 0000 0045     return !PINA.6?(PINA.7?-1:0):1;
+000108 99ce      	SBIC 0x19,6
+000109 c008      	RJMP _0x4F
+00010a 9bcf      	SBIS 0x19,7
+00010b c003      	RJMP _0x50
+00010c efef      	LDI  R30,LOW(65535)
+00010d efff      	LDI  R31,HIGH(65535)
+00010e c002      	RJMP _0x51
+                 _0x50:
+00010f e0e0      	LDI  R30,LOW(0)
+000110 e0f0      	LDI  R31,HIGH(0)
+                 _0x51:
+000111 c002      	RJMP _0x53
+                 _0x4F:
+000112 e0e1      	LDI  R30,LOW(1)
+000113 e0f0      	LDI  R31,HIGH(1)
+                 _0x53:
+000114 9508      	RET
+                 ; 0000 0046 }
+                 ; .FEND
+                 ;
+                 ;/*
+                 ;inline void moveElevator(){
+                 ;    short direction = getDirection();
+                 ;    short curr_floor = getCurrentFloor();
+                 ;
+                 ;    if(direction>0){
+                 ;        while(getMaxRequestedFloor()-curr_floor){
+                 ;            int d=0;
+                 ;            while(d++<DELAY_BETWEENLFLOORS);
+                 ;            onArriveFloor(direction);
+                 ;            setCurrentFloor(++curr_floor);
+                 ;
+                 ;        }
+                 ;    }
+                 ;    else if(direction>0){
+                 ;        while(getMinRequestedFloor()-curr_floor){
+                 ;            int d=0;
+                 ;            while(d++<DELAY_BETWEENLFLOORS);
+                 ;            onArriveFloor(direction);
+                 ;            setCurrentFloor(--curr_floor);
+                 ;        }
+                 ;    }
+                 ;    setDirection(direction);
+                 ;
+                 ;}
+                 ;*/
+                 ;
+                 ;short isElevatorEmpty(){
+                 ; 0000 0063 short isElevatorEmpty(){
+                 ; 0000 0064     return PINB.5==1;
+                 ; 0000 0065 }
+                 ;short isElevatorOk() {
+                 ; 0000 0066 short isElevatorOk() {
+                 ; 0000 0067 	return PINB.6 == 1;
+                 ; 0000 0068 }
+                 ;short isElevatorOverWeight(){
+                 ; 0000 0069 short isElevatorOverWeight(){
+                 _isElevatorOverWeight:
+                 ; .FSTART _isElevatorOverWeight
+                 ; 0000 006A     return PINB.7==1;
+000115 e0a0      	LDI  R26,0
+000116 99b7      	SBIC 0x16,7
+000117 e0a1      	LDI  R26,1
+000118 e0e1      	LDI  R30,LOW(1)
+000119 940e 0190 	CALL __EQB12
+                 _0x2080002:
+00011b e0f0      	LDI  R31,0
+00011c 9508      	RET
+                 ; 0000 006B }
+                 ; .FEND
+                 ;
+                 ;void initialization();
                  ;struct Node {
-                 ;    struct Node* next;
-                 ;    int f;
-                 ;    int p;
+                 ;	struct Node* next;
+                 ;	int f;
+                 ;	int p;
                  ;};
-                 ;struct pQueue{
-                 ;    struct Node* head;
+                 ;struct pQueue {
+                 ;	struct Node* head;
                  ;};
+                 ;void initQueue(struct pQueue *queue);
+                 ;void enQueue(struct pQueue* queue, struct Node n);
+                 ;struct Node* deQueue(struct pQueue* queue);
+                 ;short removeQueue(struct pQueue* queue, struct Node * node);
+                 ;struct Node* searchQueue(struct pQueue* queue, int f);
+                 ;int sizeOfQueue(struct pQueue* queue);
+                 ;
+                 ;void main(void)
+                 ; 0000 007E {
+                 _main:
+                 ; .FSTART _main
+                 ; 0000 007F 	struct pQueue f_queue;
+                 ; 0000 0080 	initQueue(&f_queue);
+00011d 9722      	SBIW R28,2
+                 ;	f_queue -> Y+0
+00011e 01de      	MOVW R26,R28
+00011f d05c      	RCALL _initQueue
+                 ; 0000 0081 
+                 ; 0000 0082 	initialization();
+000120 d031      	RCALL _initialization
+                 ; 0000 0083 
+                 ; 0000 0084     while (1){
+                 _0x55:
+                 ; 0000 0085 
+                 ; 0000 0086 		int in_req = getInBtnsFloor(), out_req = getOutBtnsFloor();
+                 ; 0000 0087 		int curr_floor = getCurrentFloor();
+                 ; 0000 0088 		prepare7SegDisplay(curr_floor);
+000121 9726      	SBIW R28,6
+                 ;	f_queue -> Y+6
+                 ;	in_req -> Y+4
+                 ;	out_req -> Y+2
+                 ;	curr_floor -> Y+0
+000122 dfc5      	RCALL _getInBtnsFloor
+000123 83ec      	STD  Y+4,R30
+000124 83fd      	STD  Y+4+1,R31
+000125 dfd2      	RCALL _getOutBtnsFloor
+000126 83ea      	STD  Y+2,R30
+000127 83fb      	STD  Y+2+1,R31
+000128 dfaf      	RCALL _getCurrentFloor
+000129 83e8      	ST   Y,R30
+00012a 83f9      	STD  Y+1,R31
+00012b 81a8      	LD   R26,Y
+00012c 81b9      	LDD  R27,Y+1
+00012d df34      	RCALL _prepare7SegDisplay
+                 ; 0000 0089 
+                 ; 0000 008A 
+                 ; 0000 008B 		if (in_req!=0) {
+00012e 81ec      	LDD  R30,Y+4
+00012f 81fd      	LDD  R31,Y+4+1
+000130 9730      	SBIW R30,0
+000131 f059      	BREQ _0x58
+                 ; 0000 008C 			if(curr_floor!=in_req)
+000132 81a8      	LD   R26,Y
+000133 81b9      	LDD  R27,Y+1
+000134 17ea      	CP   R30,R26
+000135 07fb      	CPC  R31,R27
+000136 f031      	BREQ _0x59
+                 ; 0000 008D 				if (isElevatorOverWeight() == 0)
+000137 dfdd      	RCALL _isElevatorOverWeight
+000138 9730      	SBIW R30,0
+000139 f419      	BRNE _0x5A
+                 ; 0000 008E 					turnOnLED(in_req);
+00013a 81ac      	LDD  R26,Y+4
+00013b 81bd      	LDD  R27,Y+4+1
+00013c df73      	RCALL _turnOnLED
+                 ; 0000 008F 
+                 ; 0000 0090 			//n.f = min_f;
+                 ; 0000 0091 			//n.p = abs(min_f - getCurrentFloor());
+                 ; 0000 0092 			//n.next = 0;
+                 ; 0000 0093 			//if (!searchQueue(&f_queue, min_f)) enQueue(&f_queue, n);
+                 ; 0000 0094 		}
+                 _0x5A:
+                 _0x59:
+                 ; 0000 0095 		if (out_req!=0) {
+                 _0x58:
+00013d 81ea      	LDD  R30,Y+2
+00013e 81fb      	LDD  R31,Y+2+1
+00013f 9730      	SBIW R30,0
+000140 f041      	BREQ _0x5B
+                 ; 0000 0096 			if (curr_floor != out_req)
+000141 81a8      	LD   R26,Y
+000142 81b9      	LDD  R27,Y+1
+000143 17ea      	CP   R30,R26
+000144 07fb      	CPC  R31,R27
+000145 f019      	BREQ _0x5C
+                 ; 0000 0097 				turnOnLED(out_req);
+000146 81aa      	LDD  R26,Y+2
+000147 81bb      	LDD  R27,Y+2+1
+000148 df67      	RCALL _turnOnLED
+                 ; 0000 0098 			//n.f = max_f;
+                 ; 0000 0099 			//n.p = abs(max_f - getCurrentFloor());
+                 ; 0000 009A 			//n.next = 0;
+                 ; 0000 009B 			//if(!searchQueue(&f_queue,max_f)) enQueue(&f_queue,n);
+                 ; 0000 009C 		}
+                 _0x5C:
+                 ; 0000 009D 
+                 ; 0000 009E 		if (getDirection() != 0) {
+                 _0x5B:
+000149 dfbe      	RCALL _getDirection
+00014a 9730      	SBIW R30,0
+00014b f019      	BREQ _0x5D
+                 ; 0000 009F 			turnOffLED(curr_floor);
+00014c 81a8      	LD   R26,Y
+00014d 81b9      	LDD  R27,Y+1
+00014e df75      	RCALL _turnOffLED
+                 ; 0000 00A0 			//if (searchQueue(&f_queue, curr_floor)) onArriveFloor(curr_floor);
+                 ; 0000 00A1 
+                 ; 0000 00A2 		}
+                 ; 0000 00A3 
+                 ; 0000 00A4 
+                 ; 0000 00A5 
+                 ; 0000 00A6     }
+                 _0x5D:
+00014f 9626      	ADIW R28,6
+000150 cfd0      	RJMP _0x55
+                 ; 0000 00A7 }
+                 _0x5E:
+000151 cfff      	RJMP _0x5E
+                 ; .FEND
+                 ;
+                 ;void initialization(){
+                 ; 0000 00A9 void initialization(){
+                 _initialization:
+                 ; .FSTART _initialization
+                 ; 0000 00AA 	// Declare your local variables here
+                 ; 0000 00AB 
+                 ; 0000 00AC 	// Input/Output Ports initialization
+                 ; 0000 00AD 	// Port A initialization
+                 ; 0000 00AE 	// Function: Bit7=In Bit6=In Bit5=In Bit4=In Bit3=In Bit2=In Bit1=In Bit0=In
+                 ; 0000 00AF 	DDRA=(0<<DDA7) | (0<<DDA6) | (0<<DDA5) | (0<<DDA4) | (0<<DDA3) | (0<<DDA2) | (0<<DDA1) | (0<<DDA0);
+000152 e0e0      	LDI  R30,LOW(0)
+000153 bbea      	OUT  0x1A,R30
+                 ; 0000 00B0 	// State: Bit7=T Bit6=T Bit5=T Bit4=T Bit3=T Bit2=T Bit1=T Bit0=T
+                 ; 0000 00B1 	PORTA=(0<<PORTA7) | (0<<PORTA6) | (0<<PORTA5) | (0<<PORTA4) | (0<<PORTA3) | (0<<PORTA2) | (0<<PORTA1) | (0<<PORTA0);
+000154 bbeb      	OUT  0x1B,R30
+                 ; 0000 00B2 
+                 ; 0000 00B3 	// Port B initialization
+                 ; 0000 00B4 	// Function: Bit7=In Bit6=In Bit5=In Bit4=In Bit3=In Bit2=In Bit1=In Bit0=In
+                 ; 0000 00B5 
+                 ; 0000 00B6 	DDRB=(0<<DDB7) | (0<<DDB6) | (0<<DDB5) | (0<<DDB4) | (1<<DDB3) | (1<<DDB2) | (1<<DDB1) | (1<<DDB0);
+000155 e0ef      	LDI  R30,LOW(15)
+000156 bbe7      	OUT  0x17,R30
+                 ; 0000 00B7 	// State: Bit7=T Bit6=T Bit5=T Bit4=T Bit3=T Bit2=T Bit1=T Bit0=T
+                 ; 0000 00B8 	PORTB=(0<<PORTB7) | (0<<PORTB6) | (0<<PORTB5) | (0<<PORTB4) | (0<<PORTB3) | (0<<PORTB2) | (0<<PORTB1) | (0<<PORTB0);
+000157 e0e0      	LDI  R30,LOW(0)
+000158 bbe8      	OUT  0x18,R30
+                 ; 0000 00B9 
+                 ; 0000 00BA 	// Port C initialization
+                 ; 0000 00BB 	// Function: Bit7=In Bit6=In Bit5=In Bit4=In Bit3=In Bit2=In Bit1=In Bit0=In
+                 ; 0000 00BC 	DDRC=(1<<DDC7) | (1<<DDC6) | (1<<DDC5) | (0<<DDC4) | (0<<DDC3) | (0<<DDC2) | (0<<DDC1) | (0<<DDC0);
+000159 eee0      	LDI  R30,LOW(224)
+00015a bbe4      	OUT  0x14,R30
+                 ; 0000 00BD 	// State: Bit7=T Bit6=T Bit5=T Bit4=T Bit3=T Bit2=T Bit1=T Bit0=T
+                 ; 0000 00BE 	PORTC=(1<<PORTC7) | (1<<PORTC6) | (1<<PORTC5) | (0<<PORTC4) | (0<<PORTC3) | (0<<PORTC2) | (0<<PORTC1) | (0<<PORTC0);
+00015b bbe5      	OUT  0x15,R30
+                 ; 0000 00BF 
+                 ; 0000 00C0 	// Port D initialization
+                 ; 0000 00C1 	// Function: Bit7=In Bit6=In Bit5=In Bit4=In Bit3=In Bit2=In Bit1=In Bit0=In
+                 ; 0000 00C2 	DDRD=(0<<DDD7) | (0<<DDD6) | (0<<DDD5) | (0<<DDD4) | (0<<DDD3) | (0<<DDD2) | (0<<DDD1) | (0<<DDD0);
+00015c e0e0      	LDI  R30,LOW(0)
+00015d bbe1      	OUT  0x11,R30
+                 ; 0000 00C3 	// State: Bit7=T Bit6=T Bit5=T Bit4=T Bit3=T Bit2=T Bit1=T Bit0=T
+                 ; 0000 00C4 	PORTD=(0<<PORTD7) | (0<<PORTD6) | (0<<PORTD5) | (0<<PORTD4) | (0<<PORTD3) | (0<<PORTD2) | (0<<PORTD1) | (0<<PORTD0);
+00015e bbe2      	OUT  0x12,R30
+                 ; 0000 00C5 
+                 ; 0000 00C6 	// Timer/Counter 0 initialization
+                 ; 0000 00C7 	// Clock source: System Clock
+                 ; 0000 00C8 	// Clock value: Timer 0 Stopped
+                 ; 0000 00C9 	// Mode: Normal top=0xFF
+                 ; 0000 00CA 	// OC0 output: Disconnected
+                 ; 0000 00CB 	TCCR0=(0<<WGM00) | (0<<COM01) | (0<<COM00) | (0<<WGM01) | (0<<CS02) | (0<<CS01) | (0<<CS00);
+00015f bfe3      	OUT  0x33,R30
+                 ; 0000 00CC 	TCNT0=0x00;
+000160 bfe2      	OUT  0x32,R30
+                 ; 0000 00CD 	OCR0=0x00;
+000161 bfec      	OUT  0x3C,R30
+                 ; 0000 00CE 
+                 ; 0000 00CF 	// Timer/Counter 1 initialization
+                 ; 0000 00D0 	// Clock source: System Clock
+                 ; 0000 00D1 	// Clock value: Timer1 Stopped
+                 ; 0000 00D2 	// Mode: Normal top=0xFFFF
+                 ; 0000 00D3 	// OC1A output: Disconnected
+                 ; 0000 00D4 	// OC1B output: Disconnected
+                 ; 0000 00D5 	// Noise Canceler: Off
+                 ; 0000 00D6 	// Input Capture on Falling Edge
+                 ; 0000 00D7 	// Timer1 Overflow Interrupt: Off
+                 ; 0000 00D8 	// Input Capture Interrupt: Off
+                 ; 0000 00D9 	// Compare A Match Interrupt: Off
+                 ; 0000 00DA 	// Compare B Match Interrupt: Off
+                 ; 0000 00DB 	TCCR1A=(0<<COM1A1) | (0<<COM1A0) | (0<<COM1B1) | (0<<COM1B0) | (0<<WGM11) | (0<<WGM10);
+000162 bdef      	OUT  0x2F,R30
+                 ; 0000 00DC 	TCCR1B=(0<<ICNC1) | (0<<ICES1) | (0<<WGM13) | (0<<WGM12) | (0<<CS12) | (0<<CS11) | (0<<CS10);
+000163 bdee      	OUT  0x2E,R30
+                 ; 0000 00DD 	TCNT1H=0x00;
+000164 bded      	OUT  0x2D,R30
+                 ; 0000 00DE 	TCNT1L=0x00;
+000165 bdec      	OUT  0x2C,R30
+                 ; 0000 00DF 	ICR1H=0x00;
+000166 bde7      	OUT  0x27,R30
+                 ; 0000 00E0 	ICR1L=0x00;
+000167 bde6      	OUT  0x26,R30
+                 ; 0000 00E1 	OCR1AH=0x00;
+000168 bdeb      	OUT  0x2B,R30
+                 ; 0000 00E2 	OCR1AL=0x00;
+000169 bdea      	OUT  0x2A,R30
+                 ; 0000 00E3 	OCR1BH=0x00;
+00016a bde9      	OUT  0x29,R30
+                 ; 0000 00E4 	OCR1BL=0x00;
+00016b bde8      	OUT  0x28,R30
+                 ; 0000 00E5 
+                 ; 0000 00E6 	// Timer/Counter 2 initialization
+                 ; 0000 00E7 	// Clock source: System Clock
+                 ; 0000 00E8 	// Clock value: Timer2 Stopped
+                 ; 0000 00E9 	// Mode: Normal top=0xFF
+                 ; 0000 00EA 	// OC2 output: Disconnected
+                 ; 0000 00EB 	ASSR=0<<AS2;
+00016c bde2      	OUT  0x22,R30
+                 ; 0000 00EC 	TCCR2=(0<<PWM2) | (0<<COM21) | (0<<COM20) | (0<<CTC2) | (0<<CS22) | (0<<CS21) | (0<<CS20);
+00016d bde5      	OUT  0x25,R30
+                 ; 0000 00ED 	TCNT2=0x00;
+00016e bde4      	OUT  0x24,R30
+                 ; 0000 00EE 	OCR2=0x00;
+00016f bde3      	OUT  0x23,R30
+                 ; 0000 00EF 
+                 ; 0000 00F0 	// Timer(s)/Counter(s) Interrupt(s) initialization
+                 ; 0000 00F1 	TIMSK=(0<<OCIE2) | (0<<TOIE2) | (0<<TICIE1) | (0<<OCIE1A) | (0<<OCIE1B) | (0<<TOIE1) | (0<<OCIE0) | (0<<TOIE0);
+000170 bfe9      	OUT  0x39,R30
+                 ; 0000 00F2 
+                 ; 0000 00F3 	// External Interrupt(s) initialization
+                 ; 0000 00F4 	// INT0: Off
+                 ; 0000 00F5 	// INT1: Off
+                 ; 0000 00F6 	// INT2: Off
+                 ; 0000 00F7 	MCUCR=(0<<ISC11) | (0<<ISC10) | (0<<ISC01) | (0<<ISC00);
+000171 bfe5      	OUT  0x35,R30
+                 ; 0000 00F8 	MCUCSR=(0<<ISC2);
+000172 bfe4      	OUT  0x34,R30
+                 ; 0000 00F9 
+                 ; 0000 00FA 	// USART initialization
+                 ; 0000 00FB 	// USART disabled
+                 ; 0000 00FC 	UCSRB=(0<<RXCIE) | (0<<TXCIE) | (0<<UDRIE) | (0<<RXEN) | (0<<TXEN) | (0<<UCSZ2) | (0<<RXB8) | (0<<TXB8);
+000173 b9ea      	OUT  0xA,R30
+                 ; 0000 00FD 
+                 ; 0000 00FE 	// Analog Comparator initialization
+                 ; 0000 00FF 	// Analog Comparator: Off
+                 ; 0000 0100 	// The Analog Comparator's positive input is
+                 ; 0000 0101 	// connected to the AIN0 pin
+                 ; 0000 0102 	// The Analog Comparator's negative input is
+                 ; 0000 0103 	// connected to the AIN1 pin
+                 ; 0000 0104 	ACSR=(1<<ACD) | (0<<ACBG) | (0<<ACO) | (0<<ACI) | (0<<ACIE) | (0<<ACIC) | (0<<ACIS1) | (0<<ACIS0);
+000174 e8e0      	LDI  R30,LOW(128)
+000175 b9e8      	OUT  0x8,R30
+                 ; 0000 0105 	SFIOR=(0<<ACME);
+000176 e0e0      	LDI  R30,LOW(0)
+000177 bfe0      	OUT  0x30,R30
+                 ; 0000 0106 
+                 ; 0000 0107 	// ADC initialization
+                 ; 0000 0108 	// ADC disabled
+                 ; 0000 0109 	ADCSRA=(0<<ADEN) | (0<<ADSC) | (0<<ADATE) | (0<<ADIF) | (0<<ADIE) | (0<<ADPS2) | (0<<ADPS1) | (0<<ADPS0);
+000178 b9e6      	OUT  0x6,R30
+                 ; 0000 010A 
+                 ; 0000 010B 	// SPI initialization
+                 ; 0000 010C 	// SPI disabled
+                 ; 0000 010D 	SPCR=(0<<SPIE) | (0<<SPE) | (0<<DORD) | (0<<MSTR) | (0<<CPOL) | (0<<CPHA) | (0<<SPR1) | (0<<SPR0);
+000179 b9ed      	OUT  0xD,R30
+                 ; 0000 010E 
+                 ; 0000 010F 	// TWI initialization
+                 ; 0000 0110 	// TWI disabled
+                 ; 0000 0111 	TWCR=(0<<TWEA) | (0<<TWSTA) | (0<<TWSTO) | (0<<TWEN) | (0<<TWIE);
+00017a bfe6      	OUT  0x36,R30
+                 ; 0000 0112 
+                 ; 0000 0113 }
+00017b 9508      	RET
+                 ; .FEND
+                 ;
+                 ;
+                 ;
+                 ;
+                 ;
+                 ;
                  ;void initQueue(struct pQueue *queue){
-                 ; 0000 0034 void initQueue(struct pQueue *queue){
+                 ; 0000 011A void initQueue(struct pQueue *queue){
                  _initQueue:
                  ; .FSTART _initQueue
-                 ; 0000 0035     queue->head = 0;
-000121 93ba      	ST   -Y,R27
-000122 93aa      	ST   -Y,R26
+                 ; 0000 011B     queue->head = 0;
+00017c 93ba      	ST   -Y,R27
+00017d 93aa      	ST   -Y,R26
                  ;	*queue -> Y+0
-000123 81a8      	LD   R26,Y
-000124 81b9      	LDD  R27,Y+1
-000125 e0e0      	LDI  R30,LOW(0)
-000126 e0f0      	LDI  R31,HIGH(0)
-000127 93ed      	ST   X+,R30
-000128 93fc      	ST   X,R31
-                 ; 0000 0036 }
-000129 c18e      	RJMP _0x2080001
+00017e 81a8      	LD   R26,Y
+00017f 81b9      	LDD  R27,Y+1
+000180 e0e0      	LDI  R30,LOW(0)
+000181 e0f0      	LDI  R31,HIGH(0)
+000182 93ed      	ST   X+,R30
+000183 93fc      	ST   X,R31
+                 ; 0000 011C }
+                 _0x2080001:
+000184 9622      	ADIW R28,2
+000185 9508      	RET
                  ; .FEND
                  ;
                  ;void enQueue(struct pQueue* queue, struct Node n){
-                 ; 0000 0038 void enQueue(struct pQueue* queue, struct Node n){
-                 _enQueue:
-                 ; .FSTART _enQueue
-                 ; 0000 0039     struct Node* curr = queue->head;
-                 ; 0000 003A     struct Node* node = (struct Node*)malloc(sizeof(n));
-                 ; 0000 003B     node->f = n.f;
-00012a 940e 031f 	CALL __SAVELOCR4
+                 ; 0000 011E void enQueue(struct pQueue* queue, struct Node n){
+                 ; 0000 011F     struct Node* curr = queue->head;
+                 ; 0000 0120     struct Node* node = (struct Node*)malloc(sizeof(n));
+                 ; 0000 0121     node->f = n.f;
                  ;	*queue -> Y+10
                  ;	n -> Y+4
                  ;	*curr -> R16,R17
                  ;	*node -> R18,R19
-00012c 940e 02d3 	CALL SUBOPT_0x4
-00012e 018f      	MOVW R16,R30
-00012f e0a6      	LDI  R26,LOW(6)
-000130 e0b0      	LDI  R27,0
-000131 940e 02b4 	CALL _malloc
-000133 019f      	MOVW R18,R30
-000134 81ee      	LDD  R30,Y+6
-000135 81ff      	LDD  R31,Y+6+1
-                +
-000136 01d9     +MOVW R26 , R18
-000137 9612     +ADIW R26 , 2
-000138 93ed     +ST X + , R30
-000139 93fc     +ST X , R31
-                 	__PUTW1RNS 18,2
-                 ; 0000 003C     node->p = n.p;
-00013a 85e8      	LDD  R30,Y+8
-00013b 85f9      	LDD  R31,Y+8+1
-                +
-00013c 01d9     +MOVW R26 , R18
-00013d 9614     +ADIW R26 , 4
-00013e 93ed     +ST X + , R30
-00013f 93fc     +ST X , R31
-                 	__PUTW1RNS 18,4
-                 ; 0000 003D     node->next = 0;
-000140 01d9      	MOVW R26,R18
-000141 e0e0      	LDI  R30,LOW(0)
-000142 e0f0      	LDI  R31,HIGH(0)
-000143 93ed      	ST   X+,R30
-000144 93fc      	ST   X,R31
-                 ; 0000 003E     if(!queue->head){
-000145 940e 02d3 	CALL SUBOPT_0x4
-000147 9730      	SBIW R30,0
-000148 f429      	BRNE _0xD
-                 ; 0000 003F         queue->head = node;
-000149 85aa      	LDD  R26,Y+10
-00014a 85bb      	LDD  R27,Y+10+1
-00014b 932d      	ST   X+,R18
-00014c 933c      	ST   X,R19
-                 ; 0000 0040         return;
-00014d c041      	RJMP _0x2080005
-                 ; 0000 0041     }
-                 ; 0000 0042     if(node->p < queue->head->p){
-                 _0xD:
-00014e 01f9      	MOVW R30,R18
-                +
-00014f 8004     +LDD R0 , Z + 4
-000150 8015     +LDD R1 , Z + 4 + 1
-                 	__GETWRZ 0,1,4
-000151 940e 02d3 	CALL SUBOPT_0x4
-000153 940e 02d8 	CALL SUBOPT_0x5
-000155 f454      	BRGE _0xE
-                 ; 0000 0043         node->next = queue->head;
-000156 940e 02d3 	CALL SUBOPT_0x4
-000158 01d9      	MOVW R26,R18
-000159 93ed      	ST   X+,R30
-00015a 93fc      	ST   X,R31
-                 ; 0000 0044         queue->head = node;
-00015b 85aa      	LDD  R26,Y+10
-00015c 85bb      	LDD  R27,Y+10+1
-00015d 932d      	ST   X+,R18
-00015e 933c      	ST   X,R19
-                 ; 0000 0045         return;
-00015f c02f      	RJMP _0x2080005
-                 ; 0000 0046     }
-                 ; 0000 0047     if(!queue->head->next){
-                 _0xE:
-000160 940e 02d3 	CALL SUBOPT_0x4
-000162 01df      	MOVW R26,R30
-000163 940e 0313 	CALL __GETW1P
-000165 9730      	SBIW R30,0
-000166 f419      	BRNE _0xF
-                 ; 0000 0048         queue->head->next = node;
-000167 85aa      	LDD  R26,Y+10
-000168 85bb      	LDD  R27,Y+10+1
-000169 c021      	RJMP _0x2080006
-                 ; 0000 0049         return;
-                 ; 0000 004A     }
-                 ; 0000 004B     while (curr->next->next){
-                 _0xF:
-                 _0x10:
-00016a 01d8      	MOVW R26,R16
-00016b 940e 0313 	CALL __GETW1P
-00016d 01df      	MOVW R26,R30
-00016e 940e 0313 	CALL __GETW1P
-000170 9730      	SBIW R30,0
-000171 f0c1      	BREQ _0x12
-                 ; 0000 004C         if(node->p < curr->next->p){
-000172 01f9      	MOVW R30,R18
-                +
-000173 8004     +LDD R0 , Z + 4
-000174 8015     +LDD R1 , Z + 4 + 1
-                 	__GETWRZ 0,1,4
-000175 01d8      	MOVW R26,R16
-000176 940e 0313 	CALL __GETW1P
-000178 940e 02d8 	CALL SUBOPT_0x5
-00017a f45c      	BRGE _0x13
-                 ; 0000 004D             node->next = curr->next;
-00017b 01d8      	MOVW R26,R16
-00017c 940e 0313 	CALL __GETW1P
-00017e 01d9      	MOVW R26,R18
-00017f 93ed      	ST   X+,R30
-000180 93fc      	ST   X,R31
-                 ; 0000 004E             curr->next = node;
-000181 01f9      	MOVW R30,R18
-000182 01d8      	MOVW R26,R16
-000183 93ed      	ST   X+,R30
-000184 93fc      	ST   X,R31
-                 ; 0000 004F             return;
-000185 c009      	RJMP _0x2080005
-                 ; 0000 0050         }
-                 ; 0000 0051         curr = curr->next;
-                 _0x13:
-000186 01d8      	MOVW R26,R16
-000187 910d      	LD   R16,X+
-000188 911c      	LD   R17,X
-                 ; 0000 0052     }
-000189 cfe0      	RJMP _0x10
-                 _0x12:
-                 ; 0000 0053     curr->next->next = node;
-00018a 01d8      	MOVW R26,R16
-                 _0x2080006:
-00018b 940e 0313 	CALL __GETW1P
-00018d 8320      	ST   Z,R18
-00018e 8331      	STD  Z+1,R19
-                 ; 0000 0054 
-                 ; 0000 0055 }
-                 _0x2080005:
-00018f 940e 0324 	CALL __LOADLOCR4
-                 _0x2080007:
-000191 962c      	ADIW R28,12
-000192 9508      	RET
-                 ; .FEND
+                 ; 0000 0122     node->p = n.p;
+                 ; 0000 0123     node->next = 0;
+                 ; 0000 0124     if(!queue->head){
+                 ; 0000 0125         queue->head = node;
+                 ; 0000 0126         return;
+                 ; 0000 0127     }
+                 ; 0000 0128     if(node->p < queue->head->p){
+                 ; 0000 0129         node->next = queue->head;
+                 ; 0000 012A         queue->head = node;
+                 ; 0000 012B         return;
+                 ; 0000 012C     }
+                 ; 0000 012D     if(!queue->head->next){
+                 ; 0000 012E         queue->head->next = node;
+                 ; 0000 012F         return;
+                 ; 0000 0130     }
+                 ; 0000 0131     while (curr->next->next){
+                 ; 0000 0132         if(node->p < curr->next->p){
+                 ; 0000 0133             node->next = curr->next;
+                 ; 0000 0134             curr->next = node;
+                 ; 0000 0135             return;
+                 ; 0000 0136         }
+                 ; 0000 0137         curr = curr->next;
+                 ; 0000 0138     }
+                 ; 0000 0139     curr->next->next = node;
+                 ; 0000 013A 
+                 ; 0000 013B }
+                 ;short removeQueue(struct pQueue* queue, struct Node * node) {
+                 ; 0000 013C short removeQueue(struct pQueue* queue, struct Node * node) {
+                 ; 0000 013D 	struct Node* curr = queue->head;
+                 ; 0000 013E 	if (!curr) return 0;
+                 ;	*queue -> Y+4
+                 ;	*node -> Y+2
+                 ;	*curr -> R16,R17
+                 ; 0000 013F 	if (node == curr) {
+                 ; 0000 0140 		queue->head = queue->head->next;
+                 ; 0000 0141 		free(node);
+                 ; 0000 0142 		return 1;
+                 ; 0000 0143 	}
+                 ; 0000 0144 	while (curr->next) {
+                 ; 0000 0145 		if (curr->next == node) {
+                 ; 0000 0146 			curr->next = curr->next->next;
+                 ; 0000 0147 			free(node);
+                 ; 0000 0148 			return 1;
+                 ; 0000 0149 		}
+                 ; 0000 014A 		curr = curr->next;
+                 ; 0000 014B 	}
+                 ; 0000 014C 	return 0;
+                 ; 0000 014D }
                  ;struct Node* deQueue(struct pQueue* queue){
-                 ; 0000 0056 struct Node* deQueue(struct pQueue* queue){
-                 _deQueue:
-                 ; .FSTART _deQueue
-                 ; 0000 0057     struct Node* temp = queue->head;
-                 ; 0000 0058     if(!temp) return 0;
-000193 940e 02ce 	CALL SUBOPT_0x3
+                 ; 0000 014E struct Node* deQueue(struct pQueue* queue){
+                 ; 0000 014F     struct Node* temp = queue->head;
+                 ; 0000 0150     if(!temp) return 0;
                  ;	*queue -> Y+2
                  ;	*temp -> R16,R17
-000195 81aa      	LDD  R26,Y+2
-000196 81bb      	LDD  R27,Y+2+1
-000197 940e 0313 	CALL __GETW1P
-000199 018f      	MOVW R16,R30
-00019a 2e00      	MOV  R0,R16
-00019b 2a01      	OR   R0,R17
-00019c f419      	BRNE _0x14
-00019d e0e0      	LDI  R30,LOW(0)
-00019e e0f0      	LDI  R31,HIGH(0)
-00019f c00c      	RJMP _0x2080003
-                 ; 0000 0059     queue->head = queue->head->next;
-                 _0x14:
-0001a0 81aa      	LDD  R26,Y+2
-0001a1 81bb      	LDD  R27,Y+2+1
-0001a2 940e 0313 	CALL __GETW1P
-0001a4 01df      	MOVW R26,R30
-0001a5 940e 0313 	CALL __GETW1P
-0001a7 81aa      	LDD  R26,Y+2
-0001a8 81bb      	LDD  R27,Y+2+1
-0001a9 93ed      	ST   X+,R30
-0001aa 93fc      	ST   X,R31
-                 ; 0000 005A     return temp;
-0001ab 01f8      	MOVW R30,R16
-                 _0x2080003:
-0001ac 8119      	LDD  R17,Y+1
-0001ad 8108      	LDD  R16,Y+0
-                 _0x2080004:
-0001ae 9624      	ADIW R28,4
-0001af 9508      	RET
-                 ; 0000 005B }
-                 ; .FEND
+                 ; 0000 0151     queue->head = queue->head->next;
+                 ; 0000 0152     return temp;
+                 ; 0000 0153 }
                  ;
                  ;struct Node* searchQueue(struct pQueue* queue,int f){
-                 ; 0000 005D struct Node* searchQueue(struct pQueue* queue,int f){
-                 _searchQueue:
-                 ; .FSTART _searchQueue
-                 ; 0000 005E     struct Node* curr = queue->head;
-                 ; 0000 005F     if(!curr) return 0;
-0001b0 940e 02ce 	CALL SUBOPT_0x3
+                 ; 0000 0155 struct Node* searchQueue(struct pQueue* queue,int f){
+                 ; 0000 0156     struct Node* curr = queue->head;
+                 ; 0000 0157     if(!curr) return 0;
                  ;	*queue -> Y+4
                  ;	f -> Y+2
                  ;	*curr -> R16,R17
-0001b2 81ac      	LDD  R26,Y+4
-0001b3 81bd      	LDD  R27,Y+4+1
-0001b4 940e 0313 	CALL __GETW1P
-0001b6 018f      	MOVW R16,R30
-0001b7 2e00      	MOV  R0,R16
-0001b8 2a01      	OR   R0,R17
-0001b9 f419      	BRNE _0x15
-0001ba e0e0      	LDI  R30,LOW(0)
-0001bb e0f0      	LDI  R31,HIGH(0)
-0001bc c014      	RJMP _0x2080002
-                 ; 0000 0060     while(curr->next && curr->f != f) curr = curr->next;
-                 _0x15:
-                 _0x16:
-0001bd 01d8      	MOVW R26,R16
-0001be 940e 0313 	CALL __GETW1P
-0001c0 9730      	SBIW R30,0
-0001c1 f019      	BREQ _0x19
-0001c2 940e 02df 	CALL SUBOPT_0x6
-0001c4 f409      	BRNE _0x1A
-                 _0x19:
-0001c5 c004      	RJMP _0x18
-                 _0x1A:
-0001c6 01d8      	MOVW R26,R16
-0001c7 910d      	LD   R16,X+
-0001c8 911c      	LD   R17,X
-0001c9 cff3      	RJMP _0x16
-                 _0x18:
-                 ; 0000 0061 return (curr->f==f)?curr:0;
-0001ca 940e 02df 	CALL SUBOPT_0x6
-0001cc f411      	BRNE _0x1B
-0001cd 01f8      	MOVW R30,R16
-0001ce c002      	RJMP _0x1C
-                 _0x1B:
-0001cf e0e0      	LDI  R30,LOW(0)
-0001d0 e0f0      	LDI  R31,HIGH(0)
-                 _0x1C:
-                 _0x2080002:
-0001d1 8119      	LDD  R17,Y+1
-0001d2 8108      	LDD  R16,Y+0
-0001d3 9626      	ADIW R28,6
-0001d4 9508      	RET
-                 ; 0000 0062 
-                 ; 0000 0063 }
-                 ; .FEND
-                 ;
-                 ;
-                 ;void main(void)
-                 ; 0000 0067 {
-                 _main:
-                 ; .FSTART _main
-                 ; 0000 0068     struct pQueue queue;
-                 ; 0000 0069     unsigned char* is_up;
-                 ; 0000 006A     unsigned char* is_down;
-                 ; 0000 006B     unsigned char* is_empty;
-                 ; 0000 006C     unsigned char* is_notempty;
-                 ; 0000 006D     unsigned char* is_overweight;
-                 ; 0000 006E     unsigned char* elev_floors[NUM_OF_FLOORS];
-                 ; 0000 006F     unsigned char* in_btns[NUM_OF_FLOORS];
-                 ; 0000 0070     unsigned char* out_btns[NUM_OF_FLOORS];
-                 ; 0000 0071     unsigned char* bcd_7seg_ins[4];
-                 ; 0000 0072 
-                 ; 0000 0073     initQueue(&queue);
-0001d5 97a0      	SBIW R28,32
-                 ;	queue -> Y+30
-                 ;	*is_up -> R16,R17
-                 ;	*is_down -> R18,R19
-                 ;	*is_empty -> R20,R21
-                 ;	*is_notempty -> Y+28
-                 ;	*is_overweight -> Y+26
-                 ;	elev_floors -> Y+20
-                 ;	in_btns -> Y+14
-                 ;	out_btns -> Y+8
-                 ;	bcd_7seg_ins -> Y+0
-0001d6 01de      	MOVW R26,R28
-0001d7 965e      	ADIW R26,30
-0001d8 df48      	RCALL _initQueue
-                 ; 0000 0074 
-                 ; 0000 0075     DDRA = 0b11110011;
-0001d9 efe3      	LDI  R30,LOW(243)
-0001da bbea      	OUT  0x1A,R30
-                 ; 0000 0076     DDRB = 0b00000111;
-0001db e0e7      	LDI  R30,LOW(7)
-0001dc bbe7      	OUT  0x17,R30
-                 ; 0000 0077     DDRC = 0b00000000;
-0001dd e0e0      	LDI  R30,LOW(0)
-0001de bbe4      	OUT  0x14,R30
-                 ; 0000 0078     DDRD = 0b00000000;
-0001df bbe1      	OUT  0x11,R30
-                 ; 0000 0079 
-                 ; 0000 007A     is_up = &PINA.0;
-                +
-0001e0 e309     +LDI R16 , LOW ( 57 )
-0001e1 e010     +LDI R17 , HIGH ( 57 )
-                 	__GETWRN 16,17,57
-                 ; 0000 007B     is_down = &PINA.1;
-                +
-0001e2 e329     +LDI R18 , LOW ( 57 )
-0001e3 e030     +LDI R19 , HIGH ( 57 )
-                 	__GETWRN 18,19,57
-                 ; 0000 007C 
-                 ; 0000 007D     bcd_7seg_ins[0] = &PORTA.4;
-0001e4 e3eb      	LDI  R30,LOW(59)
-0001e5 e0f0      	LDI  R31,HIGH(59)
-0001e6 83e8      	ST   Y,R30
-0001e7 83f9      	STD  Y+1,R31
-                 ; 0000 007E     bcd_7seg_ins[1] = &PORTA.5;
-0001e8 01fe      	MOVW R30,R28
-0001e9 9632      	ADIW R30,2
-0001ea 940e 02e7 	CALL SUBOPT_0x7
-                 ; 0000 007F     bcd_7seg_ins[2] = &PORTA.6;
-0001ec 01fe      	MOVW R30,R28
-0001ed 9634      	ADIW R30,4
-0001ee 940e 02e7 	CALL SUBOPT_0x7
-                 ; 0000 0080     bcd_7seg_ins[3] = &PORTA.7;
-0001f0 01fe      	MOVW R30,R28
-0001f1 9636      	ADIW R30,6
-0001f2 940e 02e7 	CALL SUBOPT_0x7
-                 ; 0000 0081 
-                 ; 0000 0082     is_empty = &PINB.5;
-                +
-0001f4 e346     +LDI R20 , LOW ( 54 )
-0001f5 e050     +LDI R21 , HIGH ( 54 )
-                 	__GETWRN 20,21,54
-                 ; 0000 0083     is_notempty = &PINB.6;
-0001f6 e3e6      	LDI  R30,LOW(54)
-0001f7 e0f0      	LDI  R31,HIGH(54)
-0001f8 8fec      	STD  Y+28,R30
-0001f9 8ffd      	STD  Y+28+1,R31
-                 ; 0000 0084     is_overweight = &PINB.7;
-0001fa 8fea      	STD  Y+26,R30
-0001fb 8ffb      	STD  Y+26+1,R31
-                 ; 0000 0085 
-                 ; 0000 0086 //    elev_floors[0] = &PINB.0;
-                 ; 0000 0087 //    elev_floors[1] = &PINB.1;
-                 ; 0000 0088 //    elev_floors[2] = &PINB.2;
-                 ; 0000 0089     elev_floors[0] = &PORTB.0;
-0001fc e3e8      	LDI  R30,LOW(56)
-0001fd e0f0      	LDI  R31,HIGH(56)
-0001fe 8bec      	STD  Y+20,R30
-0001ff 8bfd      	STD  Y+20+1,R31
-                 ; 0000 008A     elev_floors[1] = &PORTB.1;
-000200 01fe      	MOVW R30,R28
-000201 9676      	ADIW R30,22
-000202 e3a8      	LDI  R26,LOW(56)
-000203 e0b0      	LDI  R27,HIGH(56)
-000204 83a0      	STD  Z+0,R26
-000205 83b1      	STD  Z+1,R27
-                 ; 0000 008B     elev_floors[2] = &PORTB.2;
-000206 01fe      	MOVW R30,R28
-000207 9678      	ADIW R30,24
-000208 83a0      	STD  Z+0,R26
-000209 83b1      	STD  Z+1,R27
-                 ; 0000 008C 
-                 ; 0000 008D     in_btns[0] = &PINC.0;
-00020a e3e3      	LDI  R30,LOW(51)
-00020b e0f0      	LDI  R31,HIGH(51)
-00020c 87ee      	STD  Y+14,R30
-00020d 87ff      	STD  Y+14+1,R31
-                 ; 0000 008E     in_btns[1] = &PINC.1;
-00020e 01fe      	MOVW R30,R28
-00020f 9670      	ADIW R30,16
-000210 e3a3      	LDI  R26,LOW(51)
-000211 e0b0      	LDI  R27,HIGH(51)
-000212 83a0      	STD  Z+0,R26
-000213 83b1      	STD  Z+1,R27
-                 ; 0000 008F     in_btns[2] = &PINC.2;
-000214 01fe      	MOVW R30,R28
-000215 9672      	ADIW R30,18
-000216 83a0      	STD  Z+0,R26
-000217 83b1      	STD  Z+1,R27
-                 ; 0000 0090 
-                 ; 0000 0091     out_btns[0] = &PIND.0;
-000218 e3e0      	LDI  R30,LOW(48)
-000219 e0f0      	LDI  R31,HIGH(48)
-00021a 87e8      	STD  Y+8,R30
-00021b 87f9      	STD  Y+8+1,R31
-                 ; 0000 0092     out_btns[1] = &PIND.1;
-00021c 01fe      	MOVW R30,R28
-00021d 963a      	ADIW R30,10
-00021e e3a0      	LDI  R26,LOW(48)
-00021f e0b0      	LDI  R27,HIGH(48)
-000220 83a0      	STD  Z+0,R26
-000221 83b1      	STD  Z+1,R27
-                 ; 0000 0093     out_btns[2] = &PIND.2;
-000222 01fe      	MOVW R30,R28
-000223 963c      	ADIW R30,12
-000224 83a0      	STD  Z+0,R26
-000225 83b1      	STD  Z+1,R27
-                 ; 0000 0094 
-                 ; 0000 0095 
-                 ; 0000 0096     //Initial state:
-                 ; 0000 0097     *is_down = 0;
-000226 01d9      	MOVW R26,R18
-000227 e0e0      	LDI  R30,LOW(0)
-000228 93ec      	ST   X,R30
-                 ; 0000 0098     *is_up = 0;
-000229 01d8      	MOVW R26,R16
-00022a 93ec      	ST   X,R30
-                 ; 0000 0099     *is_empty = 1;
-00022b 01da      	MOVW R26,R20
-00022c e0e1      	LDI  R30,LOW(1)
-00022d 93ec      	ST   X,R30
-                 ; 0000 009A     *is_notempty = 0;
-00022e 8dac      	LDD  R26,Y+28
-00022f 8dbd      	LDD  R27,Y+28+1
-000230 e0e0      	LDI  R30,LOW(0)
-000231 93ec      	ST   X,R30
-                 ; 0000 009B     *is_overweight = 0;
-000232 8daa      	LDD  R26,Y+26
-000233 8dbb      	LDD  R27,Y+26+1
-000234 93ec      	ST   X,R30
-                 ; 0000 009C     *elev_floors[0] = 1;
-000235 89ac      	LDD  R26,Y+20
-000236 89bd      	LDD  R27,Y+20+1
-000237 e0e1      	LDI  R30,LOW(1)
-000238 93ec      	ST   X,R30
-                 ; 0000 009D     *elev_floors[1] = 0;
-000239 89ae      	LDD  R26,Y+22
-00023a 89bf      	LDD  R27,Y+22+1
-00023b e0e0      	LDI  R30,LOW(0)
-00023c 93ec      	ST   X,R30
-                 ; 0000 009E     *elev_floors[2] = 0;
-00023d 8da8      	LDD  R26,Y+24
-00023e 8db9      	LDD  R27,Y+24+1
-00023f 93ec      	ST   X,R30
-                 ; 0000 009F 
-                 ; 0000 00A0 
-                 ; 0000 00A1 
-                 ; 0000 00A2     while (1)
-                 _0x1E:
-                 ; 0000 00A3     {
-                 ; 0000 00A4         int cur_floor = getFloor(elev_floors);
-                 ; 0000 00A5         int i,o;
-                 ; 0000 00A6         prepare7SegDisplay(bcd_7seg_ins,elev_floors);
-000240 9726      	SBIW R28,6
-                 ;	queue -> Y+36
-                 ;	*is_notempty -> Y+34
-                 ;	*is_overweight -> Y+32
-                 ;	elev_floors -> Y+26
-                 ;	in_btns -> Y+20
-                 ;	out_btns -> Y+14
-                 ;	bcd_7seg_ins -> Y+6
-                 ;	cur_floor -> Y+4
-                 ;	i -> Y+2
-                 ;	o -> Y+0
-000241 01de      	MOVW R26,R28
-000242 965a      	ADIW R26,26
-000243 de56      	RCALL _getFloor
-000244 83ec      	STD  Y+4,R30
-000245 83fd      	STD  Y+4+1,R31
-000246 01fe      	MOVW R30,R28
-000247 9636      	ADIW R30,6
-000248 93fa      	ST   -Y,R31
-000249 93ea      	ST   -Y,R30
-00024a 01de      	MOVW R26,R28
-00024b 965c      	ADIW R26,28
-00024c de17      	RCALL _prepare7SegDisplay
-                 ; 0000 00A7         if(!(i=getFloor(in_btns))||!(o=getFloor(out_btns))){
-00024d 01de      	MOVW R26,R28
-00024e 9654      	ADIW R26,20
-00024f de4a      	RCALL _getFloor
-000250 83ea      	STD  Y+2,R30
-000251 83fb      	STD  Y+2+1,R31
-000252 9730      	SBIW R30,0
-000253 f039      	BREQ _0x22
-000254 01de      	MOVW R26,R28
-000255 961e      	ADIW R26,14
-000256 de43      	RCALL _getFloor
-000257 83e8      	ST   Y,R30
-000258 83f9      	STD  Y+1,R31
-000259 9730      	SBIW R30,0
-00025a f5a1      	BRNE _0x21
-                 _0x22:
-                 ; 0000 00A8             if(i!=cur_floor){
-00025b 81ec      	LDD  R30,Y+4
-00025c 81fd      	LDD  R31,Y+4+1
-00025d 81aa      	LDD  R26,Y+2
-00025e 81bb      	LDD  R27,Y+2+1
-00025f 17ea      	CP   R30,R26
-000260 07fb      	CPC  R31,R27
-000261 f099      	BREQ _0x24
-                 ; 0000 00A9                 struct Node n;
-                 ; 0000 00AA                 n.f = i;
-000262 9726      	SBIW R28,6
-                 ;	queue -> Y+42
-                 ;	*is_notempty -> Y+40
-                 ;	*is_overweight -> Y+38
-                 ;	elev_floors -> Y+32
-                 ;	in_btns -> Y+26
-                 ;	out_btns -> Y+20
-                 ;	bcd_7seg_ins -> Y+12
-                 ;	cur_floor -> Y+10
-                 ;	i -> Y+8
-                 ;	o -> Y+6
-                 ;	n -> Y+0
-000263 85e8      	LDD  R30,Y+8
-000264 85f9      	LDD  R31,Y+8+1
-000265 83ea      	STD  Y+2,R30
-000266 83fb      	STD  Y+2+1,R31
-                 ; 0000 00AB                 n.p = abs(i-cur_floor);
-000267 85aa      	LDD  R26,Y+10
-000268 85bb      	LDD  R27,Y+10+1
-000269 85e8      	LDD  R30,Y+8
-00026a 85f9      	LDD  R31,Y+8+1
-00026b 940e 02ec 	CALL SUBOPT_0x8
-                 ; 0000 00AC                 if(!searchQueue(&queue,i)) enQueue(&queue,n);
-00026d 85aa      	LDD  R26,Y+10
-00026e 85bb      	LDD  R27,Y+10+1
-00026f df40      	RCALL _searchQueue
-000270 9730      	SBIW R30,0
-000271 f411      	BRNE _0x25
-000272 940e 02f8 	CALL SUBOPT_0x9
-                 ; 0000 00AD             }
-                 _0x25:
-000274 9626      	ADIW R28,6
-                 ; 0000 00AE             if(o!=cur_floor){
-                 _0x24:
-000275 81ec      	LDD  R30,Y+4
-000276 81fd      	LDD  R31,Y+4+1
-000277 81a8      	LD   R26,Y
-000278 81b9      	LDD  R27,Y+1
-000279 17ea      	CP   R30,R26
-00027a 07fb      	CPC  R31,R27
-00027b f099      	BREQ _0x26
-                 ; 0000 00AF                 struct Node n;
-                 ; 0000 00B0                 n.f = o;
-00027c 9726      	SBIW R28,6
-                 ;	queue -> Y+42
-                 ;	*is_notempty -> Y+40
-                 ;	*is_overweight -> Y+38
-                 ;	elev_floors -> Y+32
-                 ;	in_btns -> Y+26
-                 ;	out_btns -> Y+20
-                 ;	bcd_7seg_ins -> Y+12
-                 ;	cur_floor -> Y+10
-                 ;	i -> Y+8
-                 ;	o -> Y+6
-                 ;	n -> Y+0
-00027d 81ee      	LDD  R30,Y+6
-00027e 81ff      	LDD  R31,Y+6+1
-00027f 83ea      	STD  Y+2,R30
-000280 83fb      	STD  Y+2+1,R31
-                 ; 0000 00B1                 n.p = abs(o-cur_floor);
-000281 85aa      	LDD  R26,Y+10
-000282 85bb      	LDD  R27,Y+10+1
-000283 81ee      	LDD  R30,Y+6
-000284 81ff      	LDD  R31,Y+6+1
-000285 940e 02ec 	CALL SUBOPT_0x8
-                 ; 0000 00B2                 if(!searchQueue(&queue,o)) enQueue(&queue,n);
-000287 85a8      	LDD  R26,Y+8
-000288 85b9      	LDD  R27,Y+8+1
-000289 df26      	RCALL _searchQueue
-00028a 9730      	SBIW R30,0
-00028b f411      	BRNE _0x27
-00028c 940e 02f8 	CALL SUBOPT_0x9
-                 ; 0000 00B3             }
-                 _0x27:
-00028e 9626      	ADIW R28,6
-                 ; 0000 00B4         }
-                 _0x26:
-                 ; 0000 00B5         if(queue.head){
-                 _0x21:
-00028f a1ec      	LDD  R30,Y+36
-000290 a1fd      	LDD  R31,Y+36+1
-000291 9730      	SBIW R30,0
-000292 f0a1      	BREQ _0x28
-                 ; 0000 00B6             moveElevator(deQueue(&queue)->f,is_up,is_down,elev_floors,bcd_7seg_ins);
-000293 01de      	MOVW R26,R28
-000294 9694      	ADIW R26,36
-000295 defd      	RCALL _deQueue
-000296 9632      	ADIW R30,2
-000297 01df      	MOVW R26,R30
-000298 940e 0313 	CALL __GETW1P
-00029a 93fa      	ST   -Y,R31
-00029b 93ea      	ST   -Y,R30
-00029c 931a      	ST   -Y,R17
-00029d 930a      	ST   -Y,R16
-00029e 933a      	ST   -Y,R19
-00029f 932a      	ST   -Y,R18
-0002a0 01fe      	MOVW R30,R28
-0002a1 96b0      	ADIW R30,32
-0002a2 93fa      	ST   -Y,R31
-0002a3 93ea      	ST   -Y,R30
-0002a4 01de      	MOVW R26,R28
-0002a5 961e      	ADIW R26,14
-0002a6 de42      	RCALL _moveElevator
-                 ; 0000 00B7 
-                 ; 0000 00B8         }
-                 ; 0000 00B9     }
-                 _0x28:
-0002a7 9626      	ADIW R28,6
-0002a8 cf97      	RJMP _0x1E
-                 ; 0000 00BA }
-                 _0x29:
-0002a9 cfff      	RJMP _0x29
-                 ; .FEND
+                 ; 0000 0158     while(curr->next && curr->f != f) curr = curr->next;
+                 ; 0000 0159 return (curr->f==f)?curr:0;
+                 ; 0000 015A 
+                 ; 0000 015B }
+                 ;int sizeOfQueue(struct pQueue* queue) {
+                 ; 0000 015C int sizeOfQueue(struct pQueue* queue) {
+                 ; 0000 015D 	struct Node* cur = queue->head;
+                 ; 0000 015E 	int count = 0;
+                 ; 0000 015F 	while (cur!=NULL) { count=7; cur = cur->next;}
+                 ;	*queue -> Y+4
+                 ;	*cur -> R16,R17
+                 ;	count -> R18,R19
+                 ; 0000 0160 	return count;
+                 ; 0000 0161 
+                 ; 0000 0162 }
                  
                  	.CSEG
-                 _abs:
-                 ; .FSTART _abs
-0002aa 93ba      	ST   -Y,R27
-0002ab 93aa      	ST   -Y,R26
-0002ac 91e9          ld   r30,y+
-0002ad 91f9          ld   r31,y+
-0002ae 9730          sbiw r30,0
-0002af f41a          brpl __abs0
-0002b0 95e0          com  r30
-0002b1 95f0          com  r31
-0002b2 9631          adiw r30,1
-                 __abs0:
-0002b3 9508          ret
-                 ; .FEND
                  
                  	.DSEG
                  
                  	.CSEG
-                 _malloc:
-                 ; .FSTART _malloc
-0002b4 93ba      	ST   -Y,R27
-0002b5 93aa      	ST   -Y,R26
-0002b6 e0e0      	LDI  R30,LOW(0)
-0002b7 e0f0      	LDI  R31,HIGH(0)
-                 _0x2080001:
-0002b8 9622      	ADIW R28,2
-0002b9 9508      	RET
-                 ; .FEND
                  
                  	.CSEG
                  
@@ -2153,164 +2005,44 @@ E:\MicroController\Elevator\CodeVision\Debug\List\elevator.asm(1126): warning: .
 000160           	.BYTE 0x4
                  
                  	.CSEG
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:1 WORDS
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:3 WORDS
                  SUBOPT_0x0:
-0002ba 81a8      	LD   R26,Y
-0002bb 81b9      	LDD  R27,Y+1
-0002bc 940e 0313 	CALL __GETW1P
-0002be 9508      	RET
-                 
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:2 WORDS
-                 SUBOPT_0x1:
-0002bf 81a8      	LD   R26,Y
-0002c0 81b9      	LDD  R27,Y+1
-0002c1 9614      	ADIW R26,4
-0002c2 940e 0313 	CALL __GETW1P
-0002c4 81e0      	LD   R30,Z
-0002c5 30e0      	CPI  R30,0
-0002c6 9508      	RET
-                 
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:1 WORDS
-                 SUBOPT_0x2:
-0002c7 940e 030d 	CALL __EQW12
-0002c9 01d0      	MOVW R26,R0
-0002ca 93ec      	ST   X,R30
-0002cb 81e8      	LD   R30,Y
-0002cc 81f9      	LDD  R31,Y+1
-0002cd 9508      	RET
-                 
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:1 WORDS
-                 SUBOPT_0x3:
-0002ce 93ba      	ST   -Y,R27
-0002cf 93aa      	ST   -Y,R26
-0002d0 931a      	ST   -Y,R17
-0002d1 930a      	ST   -Y,R16
-0002d2 9508      	RET
-                 
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 5 TIMES, CODE SIZE REDUCTION:5 WORDS
-                 SUBOPT_0x4:
-0002d3 85aa      	LDD  R26,Y+10
-0002d4 85bb      	LDD  R27,Y+10+1
-0002d5 940e 0313 	CALL __GETW1P
-0002d7 9508      	RET
-                 
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:1 WORDS
-                 SUBOPT_0x5:
-0002d8 9634      	ADIW R30,4
-0002d9 01df      	MOVW R26,R30
-0002da 940e 0313 	CALL __GETW1P
-0002dc 160e      	CP   R0,R30
-0002dd 061f      	CPC  R1,R31
-0002de 9508      	RET
-                 
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:2 WORDS
-                 SUBOPT_0x6:
-0002df 01f8      	MOVW R30,R16
-0002e0 81a2      	LDD  R26,Z+2
-0002e1 81b3      	LDD  R27,Z+3
-0002e2 81ea      	LDD  R30,Y+2
-0002e3 81fb      	LDD  R31,Y+2+1
-0002e4 17ea      	CP   R30,R26
-0002e5 07fb      	CPC  R31,R27
-0002e6 9508      	RET
-                 
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:1 WORDS
-                 SUBOPT_0x7:
-0002e7 e3ab      	LDI  R26,LOW(59)
-0002e8 e0b0      	LDI  R27,HIGH(59)
-0002e9 83a0      	STD  Z+0,R26
-0002ea 83b1      	STD  Z+1,R27
-0002eb 9508      	RET
-                 
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:6 WORDS
-                 SUBOPT_0x8:
-0002ec 1bea      	SUB  R30,R26
-0002ed 0bfb      	SBC  R31,R27
-0002ee 01df      	MOVW R26,R30
-0002ef 940e 02aa 	CALL _abs
-0002f1 83ec      	STD  Y+4,R30
-0002f2 83fd      	STD  Y+4+1,R31
-0002f3 01fe      	MOVW R30,R28
-0002f4 96ba      	ADIW R30,42
-0002f5 93fa      	ST   -Y,R31
-0002f6 93ea      	ST   -Y,R30
-0002f7 9508      	RET
-                 
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:5 WORDS
-                 SUBOPT_0x9:
-0002f8 01fe      	MOVW R30,R28
-0002f9 96ba      	ADIW R30,42
-0002fa 93fa      	ST   -Y,R31
-0002fb 93ea      	ST   -Y,R30
-0002fc 01fe      	MOVW R30,R28
-0002fd 9632      	ADIW R30,2
-0002fe e0a6      	LDI  R26,6
-0002ff 940e 0317 	CALL __PUTPARL
-000301 940c 012a 	JMP  _enQueue
+000186 e0e2      	LDI  R30,LOW(2)
+000187 9fea      	MUL  R30,R26
+000188 01f0      	MOVW R30,R0
+000189 2fa6      	MOV  R26,R22
+00018a 0fae      	ADD  R26,R30
+00018b 9508      	RET
                  
                  
                  	.CSEG
-                 _delay_ms:
-000303 9610      	adiw r26,0
-000304 f039      	breq __delay_ms1
-                 __delay_ms0:
-                +
-000305 ed80     +LDI R24 , LOW ( 0x7D0 )
-000306 e097     +LDI R25 , HIGH ( 0x7D0 )
-                +__DELAY_USW_LOOP :
-000307 9701     +SBIW R24 , 1
-000308 f7f1     +BRNE __DELAY_USW_LOOP
-                 	__DELAY_USW 0x7D0
-000309 95a8      	wdr
-00030a 9711      	sbiw r26,1
-00030b f7c9      	brne __delay_ms0
-                 __delay_ms1:
-00030c 9508      	ret
+                 __ANEGW1:
+00018c 95f1      	NEG  R31
+00018d 95e1      	NEG  R30
+00018e 40f0      	SBCI R31,0
+00018f 9508      	RET
                  
-                 __EQW12:
-00030d 17ea      	CP   R30,R26
-00030e 07fb      	CPC  R31,R27
-00030f e0e1      	LDI  R30,1
-000310 f009      	BREQ __EQW12T
-000311 27ee      	CLR  R30
-                 __EQW12T:
-000312 9508      	RET
+                 __EQB12:
+000190 17ea      	CP   R30,R26
+000191 e0e1      	LDI  R30,1
+000192 f009      	BREQ __EQB12T
+000193 27ee      	CLR  R30
+                 __EQB12T:
+000194 9508      	RET
                  
-                 __GETW1P:
-000313 91ed      	LD   R30,X+
-000314 91fc      	LD   R31,X
-000315 9711      	SBIW R26,1
-000316 9508      	RET
-                 
-                 __PUTPARL:
-000317 27bb      	CLR  R27
-                 __PUTPAR:
-000318 0fea      	ADD  R30,R26
-000319 1ffb      	ADC  R31,R27
-                 __PUTPAR0:
-00031a 9002      	LD   R0,-Z
-00031b 920a      	ST   -Y,R0
-00031c 9711      	SBIW R26,1
-00031d f7e1      	BRNE __PUTPAR0
-00031e 9508      	RET
-                 
-                 __SAVELOCR4:
-00031f 933a      	ST   -Y,R19
-                 __SAVELOCR3:
-000320 932a      	ST   -Y,R18
-                 __SAVELOCR2:
-000321 931a      	ST   -Y,R17
-000322 930a      	ST   -Y,R16
-000323 9508      	RET
-                 
-                 __LOADLOCR4:
-000324 813b      	LDD  R19,Y+3
-                 __LOADLOCR3:
-000325 812a      	LDD  R18,Y+2
-                 __LOADLOCR2:
-000326 8119      	LDD  R17,Y+1
-000327 8108      	LD   R16,Y
-000328 9508      	RET
+                 __MANDW12:
+000195 94e8      	CLT
+000196 fff7      	SBRS R31,7
+000197 c002      	RJMP __MANDW121
+000198 dff3      	RCALL __ANEGW1
+000199 9468      	SET
+                 __MANDW121:
+00019a 23ea      	AND  R30,R26
+00019b 23fb      	AND  R31,R27
+00019c f40e      	BRTC __MANDW122
+00019d dfee      	RCALL __ANEGW1
+                 __MANDW122:
+00019e 9508      	RET
                  
                  ;END OF CODE MARKER
                  __END_OF_CODE:
@@ -2331,41 +2063,41 @@ counted separately from r26..r31 here.
 .dseg memory usage only counts static data declared with .byte
 
 ATmega16 register use summary:
-r0 :  27 r1 :  10 r2 :   0 r3 :   0 r4 :   0 r5 :   0 r6 :   0 r7 :   0 
+r0 :   8 r1 :   1 r2 :   0 r3 :   0 r4 :   0 r5 :   0 r6 :   0 r7 :   0 
 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 r13:   0 r14:   0 r15:   0 
-r16:  31 r17:  15 r18:  17 r19:   7 r20:   2 r21:   1 r22:   5 r23:   2 
-r24:   9 r25:   3 r26: 139 r27:  75 r28:  33 r29:   1 r30: 196 r31:  72 
-x  :  51 y  : 189 z  :  48 
-Registers used: 21 out of 35 (60.0%)
+r16:   0 r17:   0 r18:   0 r19:   0 r20:   0 r21:   0 r22:   6 r23:   0 
+r24:   7 r25:   2 r26:  75 r27:  33 r28:   6 r29:   1 r30: 107 r31:  21 
+x  :   5 y  :  66 z  :   7 
+Registers used: 14 out of 35 (40.0%)
 
 ATmega16 instruction use summary:
-.lds  :   0 .lds.l:   0 .sts  :   0 .sts.l:   0 adc   :   3 add   :   3 
-adiw  :  40 and   :   0 andi  :   0 asr   :   0 bclr  :   0 bld   :   0 
-brbc  :   0 brbs  :   0 brcc  :   0 brcs  :   0 break :   0 breq  :   9 
-brge  :   3 brhc  :   0 brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 
-brlt  :   0 brmi  :   0 brne  :  20 brpl  :   1 brsh  :   0 brtc  :   0 
-brts  :   0 brvc  :   0 brvs  :   0 bset  :   0 bst   :   0 call  :  55 
-cbi   :   0 cbr   :   0 clc   :   0 clh   :   0 cli   :   1 cln   :   0 
-clr   :   4 cls   :   0 clt   :   0 clv   :   0 clz   :   0 com   :   2 
-cp    :   7 cpc   :   7 cpi   :   3 cpse  :   0 dec   :   1 des   :   0 
+.lds  :   0 .lds.l:   0 .sts  :   0 .sts.l:   0 adc   :   0 add   :   4 
+adiw  :   2 and   :   2 andi  :   0 asr   :   0 bclr  :   0 bld   :   0 
+brbc  :   0 brbs  :   0 brcc  :   0 brcs  :   0 break :   0 breq  :  17 
+brge  :   0 brhc  :   0 brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 
+brlt  :   0 brmi  :   0 brne  :  14 brpl  :   0 brsh  :   0 brtc  :   1 
+brts  :   0 brvc  :   0 brvs  :   0 bset  :   0 bst   :   0 call  :   5 
+cbi   :   7 cbr   :   0 clc   :   0 clh   :   0 cli   :   1 cln   :   0 
+clr   :   3 cls   :   0 clt   :   1 clv   :   0 clz   :   0 com   :   0 
+cp    :   3 cpc   :   2 cpi   :   4 cpse  :   0 dec   :   1 des   :   0 
 eor   :   0 fmul  :   0 fmuls :   0 fmulsu:   0 icall :   0 ijmp  :   0 
-in    :   0 inc   :   0 jmp   :  23 ld    :  30 ldd   : 129 ldi   :  84 
-lds   :   0 lpm   :   7 lsl   :   0 lsr   :   0 mov   :   2 movw  :  65 
-mul   :   3 muls  :   0 mulsu :   0 neg   :   0 nop   :   0 or    :   2 
-ori   :   0 out   :  10 pop   :   2 push  :   2 rcall :  12 ret   :  20 
-reti  :   0 rjmp  :  22 rol   :   0 ror   :   0 sbc   :   1 sbci  :   0 
-sbi   :   0 sbic  :   0 sbis  :   0 sbiw  :  21 sbr   :   0 sbrc  :   0 
-sbrs  :   0 sec   :   0 seh   :   0 sei   :   0 sen   :   0 ser   :   0 
-ses   :   0 set   :   0 sev   :   0 sez   :   0 sleep :   0 spm   :   0 
-st    :  83 std   :  39 sts   :   0 sub   :   1 subi  :   0 swap  :   0 
-tst   :   0 wdr   :   1 
-Instructions used: 36 out of 116 (31.0%)
+in    :   0 inc   :   0 jmp   :  22 ld    :  22 ldd   :  30 ldi   :  62 
+lds   :   0 lpm   :   7 lsl   :   0 lsr   :   0 mov   :   4 movw  :   5 
+mul   :   4 muls  :   0 mulsu :   0 neg   :   2 nop   :   0 or    :   0 
+ori   :   0 out   :  40 pop   :   0 push  :   0 rcall :  13 ret   :   8 
+reti  :   0 rjmp  :  25 rol   :   0 ror   :   0 sbc   :   0 sbci  :   1 
+sbi   :   7 sbic  :  11 sbis  :   1 sbiw  :  25 sbr   :   0 sbrc  :   0 
+sbrs  :   1 sec   :   0 seh   :   0 sei   :   0 sen   :   0 ser   :   0 
+ses   :   0 set   :   1 sev   :   0 sez   :   0 sleep :   0 spm   :   0 
+st    :  14 std   :   5 sts   :   0 sub   :   0 subi  :   0 swap  :   0 
+tst   :   0 wdr   :   0 
+Instructions used: 37 out of 116 (31.9%)
 
 ATmega16 memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x000652   1592     26   1618   16384   9.9%
+[.cseg] 0x000000 0x00033e    808     22    830   16384   5.1%
 [.dseg] 0x000060 0x000164      0      4      4    1024   0.4%
 [.eseg] 0x000000 0x000000      0      0      0     512   0.0%
 
-Assembly complete, 0 errors, 4 warnings
+Assembly complete, 0 errors, 3 warnings

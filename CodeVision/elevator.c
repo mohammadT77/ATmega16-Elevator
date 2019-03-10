@@ -11,7 +11,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-const short int NUM_OF_FLOORS = 3;
+//const short int NUM_OF_FLOORS = 3;
 //const short int DELAY_BETWEENLFLOORS = 5000;
 
 void prepare7SegDisplay(int floor){
@@ -43,28 +43,22 @@ int getOutBtnsFloor(){
 
 
 
-int getMaxRequestedFloor(){
-    int max;
-    if(PIND.2||PINC.2) max = 3;
-    else if(PIND.1||PINC.1) max = 2;
-    else if(PIND.0||PINC.0) max = 1;
-    else max = 0;
-    return max;
-}
-int getMinRequestedFloor(){
-    int min;
-    if(PIND.0||PINC.0) min = 1;
-    else if(PIND.1||PINC.1) min = 2;
-    else if(PIND.2||PINC.2) min = 3;
-    else min = 0;
-    return min;
-}
-void onArriveFloor(int floor){
-	if (floor == 1) { PIND.0 = 0; PINC.0 = 0; };
-	if (floor == 2) { PIND.1 = 0; PINC.1 = 0; }
-	if (floor == 3) { PIND.2 = 0; PINC.2 = 0; }
-}
-
+//int getMaxRequestedFloor(){
+//    int max;
+//    if(PIND.2||PINC.2) max = 3;
+//    else if(PIND.1||PINC.1) max = 2;
+//    else if(PIND.0||PINC.0) max = 1;
+//    else max = 0;
+//    return max;
+//}
+//int getMinRequestedFloor(){
+//    int min;
+//    if(PIND.0||PINC.0) min = 1;
+//    else if(PIND.1||PINC.1) min = 2;
+//    else if(PIND.2||PINC.2) min = 3;
+//    else min = 0;
+//    return min;
+//}
 short getDirection(){
     return !PINA.6?(PINA.7?-1:0):1;
 }
@@ -107,6 +101,7 @@ short isElevatorOverWeight(){
 }
 
 void initialization();
+/*
 struct Node {
 	struct Node* next;
 	int f;
@@ -121,6 +116,7 @@ struct Node* deQueue(struct pQueue* queue);
 short removeQueue(struct pQueue* queue, struct Node * node);
 struct Node* searchQueue(struct pQueue* queue, int f);
 int sizeOfQueue(struct pQueue* queue);
+*/
 
 void main(void)
 {	
@@ -278,7 +274,7 @@ void initialization(){
 
 
 
-
+/*
 void initQueue(struct pQueue *queue){
     queue->head = 0;
 }
@@ -352,3 +348,4 @@ int sizeOfQueue(struct pQueue* queue) {
 	return count;
 
 }
+*/

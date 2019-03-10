@@ -27,7 +27,7 @@ PageIndex0=0
 OF1=elevator.c
 Active1=1
 EditorPanel1=0
-TimeStamp1=1315484969
+TimeStamp1=1315551050
 PageIndex1=1
 [CompilerDebug]
 Chip=ATmega16
@@ -524,12 +524,12 @@ Row=0
 Column=0
 ScrollPosX=0
 ScrollPosY=0
-TimeStamp=1315485006
+TimeStamp=1315551052
 [BookmarksFoldedCode]
 Files=1
 F1=elevator.c
 [Bookmarks1]
-TimeStamp=1315484969
+TimeStamp=1315551050
 Row=0
 Column=0
 ScrollPosX=0
@@ -544,8 +544,6 @@ BK6=-1
 BK7=-1
 BK8=-1
 BK9=-1
-[FoldedCode1]
-Blocks=0
 [Header2]
 Files=6
 F1=C:\cvavr\inc\io.h
@@ -554,3 +552,5 @@ F3=C:\cvavr\inc\mega16_bits.h
 F4=C:\cvavr\inc\delay.h
 F5=C:\cvavr\inc\stdlib.h
 F6=C:\cvavr\inc\math.h
+[FoldedCode1]
+Blocks=0
